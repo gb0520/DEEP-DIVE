@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
             score += recentY - targetY;
             isClearStage = true;
             fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime);
+            player.SetDirection(isClearStage);  //플레이어 낙하 방향 조정
             Invoke("FadeOut", waitTime - fadeTime);
             Invoke("Restart", waitTime);
         }
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
 
         isClearStage = false;
         isOverY = false;
+        player.SetDirection(isClearStage);  //플레이어 낙하 방향 조정
     }
 
     public void GameOver()

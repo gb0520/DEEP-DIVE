@@ -6,10 +6,12 @@ public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D rigid;
     private Animator anim;
+    private SpriteRenderer rend;
 
     private KeyCode leftKey = KeyCode.A;
     private KeyCode rightKey = KeyCode.D;
 
+    private Vector3 preDirection;   //이전 방향 > 기억용
     private Vector3 curDirection;
     private Vector3 left = new Vector3(-1, -1, 0).normalized;
     private Vector3 right = new Vector3(1, -1, 0).normalized;
@@ -36,7 +38,9 @@ public class PlayerMove : MonoBehaviour
     private int dashCount = 1;
 
     private bool isCrashing = false;
+    private bool isLoading = false;
     private float jumpForce;
+
 
     [SerializeField]
     private float bombSize;
@@ -44,7 +48,9 @@ public class PlayerMove : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        rend = GetComponentInChildren<SpriteRenderer>();
         curDirection = left;
+        preDirection = curDirection;
 
         hp = maxHp;
     }
@@ -59,8 +65,11 @@ public class PlayerMove : MonoBehaviour
             StartDash(right);
         }
 
+        SetRend(curDirection.x);
+
         if(rigid.velocity.y > 0)
         {
+            if(isLoading == true) { return; }
             curDirection = new Vector3(curDirection.x, -curDirection.y, 0f);
         }
 
@@ -85,7 +94,7 @@ public class PlayerMove : MonoBehaviour
     //----------------------------------------------Move
     private void Move()
     {
-        if (isDashing == true || isCrashing == true) { return; }
+        if (isDashing == true || isCrashing == true || isLoading == true) { return; }
         moveSpeed += Time.deltaTime;
         if (moveSpeed >= maxSpeed)
         {
@@ -121,8 +130,9 @@ public class PlayerMove : MonoBehaviour
     }
 
     //----------------------------------------------Crash
-    private void SetDirection(float x)
+    public void SetDirection(float x)  //x값으로 조절
     {
+        anim.SetBool("isJump", false);
         if (x < 0)
         {
             curDirection = left;
@@ -132,6 +142,18 @@ public class PlayerMove : MonoBehaviour
             curDirection = right;
         }
     }
+    public void SetDirection(bool loading)  //전체 조정
+    {
+        isLoading = loading;
+        if(isLoading == true)
+        {
+            preDirection = curDirection;
+            curDirection = Vector2.down;
+            rigid.velocity = curDirection * moveSpeed;
+            return;
+        }
+        curDirection = preDirection;
+    }
     public void SetJumpForce(float force = 0f)
     {
         if (force == 0f)
@@ -140,6 +162,11 @@ public class PlayerMove : MonoBehaviour
             return;
         }
         jumpForce = force;
+    }
+    private void SetRend(float x)
+    {
+        if (x < 0) { rend.flipX = false; }
+        else { rend.flipX = true; }
     }
 
     public void CheckReflect(float dir)
