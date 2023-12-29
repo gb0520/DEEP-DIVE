@@ -154,6 +154,17 @@ public class PlayerMove : MonoBehaviour
         }
         curDirection = preDirection;
     }
+    public void fall()
+    {
+        preDirection = curDirection;
+        curDirection = Vector2.down;
+        rigid.velocity = curDirection * moveSpeed;
+        Invoke("ReturnDir", 2f);
+    }
+    void ReturnDir()
+    {
+        curDirection = preDirection;
+    }
     public void SetJumpForce(float force = 0f)
     {
         if (force == 0f)
