@@ -48,6 +48,11 @@ public class PlayerMove : MonoBehaviour
             StartDash(right);
         }
 
+        if(rigid.velocity.y > 0)
+        {
+            curDirection = new Vector3(curDirection.x, -curDirection.y, 0f);
+        }
+
         if(isCrashing)
         {
             if (rigid.velocity.y <= 0)
@@ -115,6 +120,11 @@ public class PlayerMove : MonoBehaviour
     {
         isCrashing = true;
         curDirection = Vector3.Reflect(curDirection, refdir).normalized;
+        Debug.Log(refdir);
+        if(refdir.y > 0)
+        {
+            curDirection = new Vector3(curDirection.x, -curDirection.y, 0f);
+        }
 
         dashCount = 1;  //대쉬 횟수 충전
         rigid.gravityScale = 1f;

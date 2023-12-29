@@ -10,9 +10,7 @@ public class Floor : MonoBehaviour
         {
             Debug.Log("qkekr°ú Ãæµ¹");
             Vector3 refdir = col.contacts[0].normal;
-            //col.transform.parent.SendMessage("ReflectFloor", refdir);
-
-
+            col.gameObject.SendMessage("ReflectFloor", refdir);
         }
     }
 }
