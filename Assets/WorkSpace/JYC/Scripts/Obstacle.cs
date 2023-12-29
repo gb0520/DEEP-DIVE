@@ -6,7 +6,8 @@ public class Obstacle : MonoBehaviour
 {
     public Transform highest;
     public Transform lowest;
-
+    public GameObject[] obstacles;
+    public int index;
 
     public void Spawn(Vector3 pos)
     {
@@ -16,6 +17,15 @@ public class Obstacle : MonoBehaviour
         transform.position = spawnPos;
     }
 
+
+    public void Init()
+    {
+        for (int i = 0; i < obstacles.Length; i++)
+        {
+            if (!obstacles[i].activeSelf)
+                obstacles[i].SetActive(true);
+        }
+    }
     // 장애물 초기화 기능 추가해야 함
 
 

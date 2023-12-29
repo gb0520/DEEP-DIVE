@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public GameObject[] obstaclePrefabs;
+    // public GameObject[] obstaclePrefabs;
+
+    [System.Serializable]
+    public class obstaclesType
+    {
+        public GameObject[] obstaclePrefabs;
+    }
+    public obstaclesType[] obstacleTypes;
 
     public Transform cameraTrans;
     public Vector3 targetPos;
@@ -16,7 +24,9 @@ public class ObstacleManager : MonoBehaviour
 
     void Awake()
     {
-        spawnedObstacles = new List<GameObject>[obstaclePrefabs.Length];
+
+        
+        spawnedObstacles = new List<GameObject>[obstacleTypes.Length];
         for (int i = 0; i < spawnedObstacles.Length; i++)
         {
             spawnedObstacles[i] = new List<GameObject>();
@@ -46,7 +56,8 @@ public class ObstacleManager : MonoBehaviour
         if (GameManager.instance.isOverY) return;
 
         // 장애물 소환하고, 그 다음 소환 위치 지정하기
-        int spawnRandom = Random.Range(0, obstaclePrefabs.Length);
+        // int spawnRandom = Random.Range(0, obstaclePrefabs.Length);
+        int spawnRandom = Random.Range(0, obstacleTypes[GameManager.instance.stage].obstaclePrefabs.Length);
 
 
 
@@ -64,7 +75,7 @@ public class ObstacleManager : MonoBehaviour
         // 풀링 메니저 처럼 실행하다가 없으면 추가 소환
         // 굳이 항상 할 필요 없이 소환하고 나면 후에 없애는 식으로 해도 충분할 듯
 
-        for (int index = 0; index < obstaclePrefabs.Length; index++)
+        for (int index = 0; index < obstacleTypes.Length; index++)
         {
             // foreach (GameObject item in spawnedObstacles[index].obstacles)
             foreach (GameObject item in spawnedObstacles[index])
@@ -77,7 +88,7 @@ public class ObstacleManager : MonoBehaviour
                 }
             }
         }
-        
+      
     }
 
     GameObject GetObstacle(int index)
@@ -85,29 +96,41 @@ public class ObstacleManager : MonoBehaviour
         GameObject obstacle = null;
 
         // foreach (GameObject item in spawnedObstacles[index].obstacles)
-        foreach (GameObject item in spawnedObstacles[index])
+        foreach (GameObject item in spawnedObstacles[GameManager.instance.stage])
         {
-                if(!item.activeSelf)
-                {
-                    obstacle = item;
-                    obstacle.SetActive(true);
-                    break;
-                }
+            if(!item.activeSelf && item.GetComponent<Obstacle>().index == index)
+            {
+                obstacle = item;
+                obstacle.SetActive(true);
+                break;
+            }
         }
 
-        if (!obstacle)
+        if(!obstacle)
         {
-            obstacle = Instantiate(obstaclePrefabs[index], transform);
-            spawnedObstacles[index].Add(obstacle);
+            obstacle = Instantiate(obstacleTypes[GameManager.instance.stage].obstaclePrefabs[index], transform);
+            obstacle.GetComponent<Obstacle>().index = index;
+            spawnedObstacles[GameManager.instance.stage].Add(obstacle);
         }
+
+        // foreach (GameObject item in spawnedObstacles[index])
+        // {
+        //         if(!item.activeSelf)
+        //         {
+        //             obstacle = item;
+        //             obstacle.SetActive(true);
+        //             break;
+        //         }
+        // }
+
+        // if (!obstacle)
+        // {
+        //     obstacle = Instantiate(obstaclePrefabs[index], transform);
+        //     spawnedObstacles[index].Add(obstacle);
+        // }
             
-
+        // obstacle.GetComponent<Obstacle>().Init();
         return obstacle;
-    }
-    
-    public void ChangeImage()
-    {
-        
     }
 
 }
