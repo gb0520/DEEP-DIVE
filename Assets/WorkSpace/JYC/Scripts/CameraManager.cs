@@ -29,9 +29,5 @@ public class CameraManager : MonoBehaviour
     }
 
 
-    public void Save()
-    {
-        int score = -(int)transform.position.y;
-        SaveManager.instance.Save(score);
-    }
+    
 }

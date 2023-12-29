@@ -31,6 +31,7 @@ public class PlayerMove : MonoBehaviour
     private int dashCount = 1;
 
     private bool isCrashing = false;
+    private bool isGround = false;
 
     private void Awake()
     {
@@ -66,6 +67,8 @@ public class PlayerMove : MonoBehaviour
             }
         }
         Move();
+
+        
 
         nowSpeed = rigid.velocity;
     }
@@ -119,6 +122,13 @@ public class PlayerMove : MonoBehaviour
     public void ReflectFloor(Vector3 refdir)
     {
         isCrashing = true;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, 1 << LayerMask.NameToLayer("Floor"));
+        if (hit.collider != null)
+        {
+            isGround = true;
+        }
+        if (isGround == false) { return; }
+        rigid.velocity = Vector2.zero;
         curDirection = Vector3.Reflect(curDirection, refdir).normalized;
         Debug.Log(refdir);
         if(refdir.y > 0)
@@ -130,5 +140,11 @@ public class PlayerMove : MonoBehaviour
         rigid.gravityScale = 1f;
         rigid.drag = 1.5f;
         rigid.AddForce(curDirection * moveSpeed * 2, ForceMode2D.Impulse);
+    }
+
+    public void Save()
+    {
+        int score = -(int)transform.position.y;
+        SaveManager.instance.Save(score);
     }
 }
