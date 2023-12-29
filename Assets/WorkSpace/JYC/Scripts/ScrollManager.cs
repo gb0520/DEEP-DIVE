@@ -26,13 +26,18 @@ public class ScrollManager : MonoBehaviour
 
     void Update()
     {
-        /**/
-        // return;
+        Scrolling();
+    }
+
+
+    void Scrolling()
+    {
         float screenY = Camera.main.orthographicSize * 2;
-        Vector3 highestPos = cameraTrans.position + Vector3.up * screenY;
+        // Vector3 highestPos = cameraTrans.position + Vector3.up * screenY;
+        float highestY = cameraTrans.position.y + screenY;
 
         // 가장 높이 있는 인덱스 값만 조사하는 방법
-        if(scrollObjs[highestIndex].position.y > highestPos.y)
+        if(scrollObjs[highestIndex].position.y > highestY)
         {
             // float lowestY = cameraTrans.position.y - screenY;
             // 이거 값을 가장 낮게 있는 값으로 조절하면 적당하게 할 수 있을 것 같음
@@ -53,8 +58,6 @@ public class ScrollManager : MonoBehaviour
             if (lowestIndex == scrollObjs.Length) lowestIndex = 0;
         }
 
-
-
         // 모두 체크해서 하나하나 확인하는 방법
         // for (int i = 0; i < scrollObjs.Length; i++)
         // {
@@ -67,4 +70,6 @@ public class ScrollManager : MonoBehaviour
                 
         // }
     }
+
+
 }

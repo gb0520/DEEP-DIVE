@@ -220,7 +220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &424131949
 Transform:
   m_ObjectHideFlags: 0
@@ -238,6 +238,57 @@ Transform:
   - {fileID: 1847065047}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &711571967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 711571969}
+  - component: {fileID: 711571968}
+  m_Layer: 0
+  m_Name: Obstacle Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &711571968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711571967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0697affb53c50f049ba7e34e5a793545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefabs:
+  - {fileID: 8872845870733416571, guid: 6493f49730351b54bbb54c2a290734da, type: 3}
+  - {fileID: 4208208021785978194, guid: d815d6592312e0840aecfa19697f009a, type: 3}
+  - {fileID: 8067345624735328899, guid: bbf84651bbd5a8341be3289a66724b71, type: 3}
+  - {fileID: 933792379347163511, guid: 4dff616bd4558a44183684f6ee93d50d, type: 3}
+  - {fileID: 6338002835618431138, guid: 6a42aa0b27723c04ebf26f61577eb7d2, type: 3}
+  cameraTrans: {fileID: 1284982717}
+  targetPos: {x: 0, y: 0, z: 0}
+--- !u!4 &711571969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711571967}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1214435205
 GameObject:
