@@ -13,6 +13,10 @@ public class PlayerMove : MonoBehaviour
     private Vector3 left = new Vector3(-1, -1, 0).normalized;
     private Vector3 right = new Vector3(1, -1, 0).normalized;
 
+
+    [SerializeField]
+    private Vector2 nowSpeed;
+
     [SerializeField]
     private float moveSpeed = 0f;
     [SerializeField]
@@ -56,6 +60,8 @@ public class PlayerMove : MonoBehaviour
             }
         }
         Move();
+
+        nowSpeed = rigid.velocity;
     }
 
     private void Move()
@@ -112,6 +118,6 @@ public class PlayerMove : MonoBehaviour
         dashCount = 1;  //대쉬 횟수 충전
         rigid.gravityScale = 1f;
         rigid.drag = 1.5f;
-        rigid.AddForce(curDirection * moveSpeed *2, ForceMode2D.Impulse);
+        rigid.AddForce(curDirection * moveSpeed * 2, ForceMode2D.Impulse);
     }
 }
