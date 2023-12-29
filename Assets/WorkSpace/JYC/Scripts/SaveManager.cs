@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
     public int highestScore;
+    public bool isFirstTime;
 
     void Awake()
     {
@@ -33,6 +34,10 @@ public class SaveManager : MonoBehaviour
         highestScoreData.InnerText = score.ToString();
         root.AppendChild(highestScoreData);
 
+        XmlElement firstTime = xmlDocument.CreateElement("FirstTime");
+        firstTime.InnerText = isFirstTime.ToString();
+        root.AppendChild(firstTime);
+
         xmlDocument.AppendChild(root);
 
         xmlDocument.Save(Application.dataPath + "/HighScore.xml");
@@ -52,10 +57,15 @@ public class SaveManager : MonoBehaviour
             XmlNodeList score = xmlDocument.GetElementsByTagName("HighestScore");
             int Score = int.Parse(score[0].InnerText);
             highestScore = Score;
+
+            XmlNodeList firstTime = xmlDocument.GetElementsByTagName("FirstTime");
+            bool FirstTime = bool.Parse(firstTime[0].InnerText);
+            isFirstTime = FirstTime;
             
         }
         else
         {
+            ResetData();
             Debug.Log("no file");
         }
 
@@ -75,6 +85,10 @@ public class SaveManager : MonoBehaviour
         XmlElement score = xmlDocument.CreateElement("HighestScore");
         score.InnerText = 0.ToString();
         root.AppendChild(score);
+
+        XmlElement firstTime = xmlDocument.CreateElement("FirstTime");
+        firstTime.InnerText = true.ToString();
+        root.AppendChild(firstTime);
 
        
         xmlDocument.AppendChild(root);
