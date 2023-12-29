@@ -7,6 +7,7 @@ public class ScrollManager : MonoBehaviour
     public Transform[] scrollObjs;
     public Transform cameraTrans;
 
+    [SerializeField] private float verSize;
     public int highestIndex;
     public int lowestIndex;
 
@@ -48,7 +49,7 @@ public class ScrollManager : MonoBehaviour
             // 이거의 근본적인 문제점은 이미지가 1인 크기보다 더 큰 이미지가 왔을 때 전혀 대응할 수 없어 보인다.
             // 일단 테스트
             // scrollObjs[highestIndex].position = scrollObjs[lowestIndex].position + Vector3.down * scrollObjs[highestIndex].localScale.y;
-            scrollObjs[highestIndex].position = scrollObjs[lowestIndex].position + Vector3.down * 10;
+            scrollObjs[highestIndex].position = scrollObjs[lowestIndex].position + Vector3.down * verSize;
             
 
             highestIndex ++;
