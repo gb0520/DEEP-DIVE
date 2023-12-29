@@ -13,6 +13,20 @@ public class ScrollManager : MonoBehaviour
 
     void Start()
     {
+        // highestIndex = 0;
+        // lowestIndex = scrollObjs.Length - 1;
+        // float screenY = Camera.main.orthographicSize * 2;
+
+        // for (int i = 0; i < scrollObjs.Length; i++)
+        // {
+        //     // float objY = cameraTrans.position.y + screenY + -i * scrollObjs[i].localScale.y;
+        //     float objY = screenY + -i * scrollObjs[i].localScale.y;
+        //     scrollObjs[i].position = new Vector3(0, objY, 0);
+        // }
+    }
+
+    void Awake() 
+    {
         highestIndex = 0;
         lowestIndex = scrollObjs.Length - 1;
         float screenY = Camera.main.orthographicSize * 2;
@@ -20,9 +34,10 @@ public class ScrollManager : MonoBehaviour
         for (int i = 0; i < scrollObjs.Length; i++)
         {
             // float objY = cameraTrans.position.y + screenY + -i * scrollObjs[i].localScale.y;
-            float objY = screenY + -i * scrollObjs[i].localScale.y;
+            float objY = screenY + -i * verSize;
             scrollObjs[i].position = new Vector3(0, objY, 0);
-        }
+            
+        }    
     }
 
     void Update()
