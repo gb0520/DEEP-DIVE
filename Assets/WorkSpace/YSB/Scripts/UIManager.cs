@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
     private TMP_Text scoreText;
+    private TMP_Text meterText;
     public Image[] hpImg;
 
+    private float fadeTime = 5f;
 
     private void Awake()
     {
@@ -18,23 +21,37 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
         }
-
-        scoreText = transform.Find("Text_Score").GetComponent<TMP_Text>();        
+        scoreText = transform.Find("Text_Score").GetComponent<TMP_Text>();      
+        meterText = transform.Find("Text_Meter").GetComponent<TMP_Text>();        
     }
     private void Update()
     {
-        SetScore();
+        //SetScore();
     }
-    public void SetScore()
+    public void SetScore(float score)
     {
-        scoreText.text = GameManager.instance.score.ToString();
+        scoreText.text = GameManager.instance.score.ToString("F2") + "M";
+    }
+    public void ShowMeter(float meter)
+    {
+        if(meter <= 0)
+        {
+            meterText.color = new Color(1, 1, 1, 1);
+            meterText.gameObject.SetActive(false);
+            return;
+        }
+        meterText.gameObject.SetActive(true);
+        int m = (int)(meter / 100) * 100;
+        meterText.text = m.ToString("F0") + "M\nµ¹ÆÄ";
+
+        meterText.DOFade(0, fadeTime);
     }
 
     public void SetHp(int hp)
     {
-        foreach(Image img in hpImg)
+        for (int i = 0; i < hpImg.Length; ++i)
         {
-            img.enabled = false;
+            hpImg[i].enabled = false;
         }
         for(int i = 0; i < hp; ++i)
         {

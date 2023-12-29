@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         if(!isClearStage)
         {
             isClearStage = true;
-            fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime);
+            fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime).OnComplete(() => UIManager.instance.ShowMeter(score));
             startY = player.YPos;
             
             player.SetDirection(isClearStage);  //플레이어 낙하 방향 조정
@@ -83,11 +83,10 @@ public class GameManager : MonoBehaviour
     {
         if(isClearStage) return;
 
-
-        if(yPos > player.YPos) yPos = player.YPos;
+        if (yPos > player.YPos) yPos = player.YPos;
         score = Mathf.Abs(yPos) - Mathf.Abs(fadeOutFix);
+        UIManager.instance.SetScore(score);
     }
-
     void FadeIn()
     {
         fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime).OnComplete(ClearStage);
@@ -105,6 +104,7 @@ public class GameManager : MonoBehaviour
     {
         
         fadeObj.GetComponent<SpriteRenderer>().DOFade(0, fadeTime);
+
     }
 
     void Restart()
