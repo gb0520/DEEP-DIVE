@@ -8,21 +8,24 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject fadeObj;
+    [SerializeField] GameObject fadeObj;
 
-    public ObstacleManager obstacleManager;
-    public Transform cameraTrans;
+    [SerializeField] ObstacleManager obstacleManager;
+    [SerializeField] Transform cameraTrans;
 
-    public float waitTime;
-    public float fadeTime;
+    [SerializeField] float waitTime;
+    [SerializeField] float fadeTime;
 
-    public PlayerMove player;
+    [SerializeField] PlayerMove player;
     public float targetY;
     public float recentY;
 
     [SerializeField] float length;
     public bool isOverY;
     public bool isClearStage;
+
+    public int stage;
+
     private float score;
     private float screenY => Camera.main.orthographicSize * 2;
 
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
         
         recentY = player.YPos;
         targetY = recentY - length;
+        stage = 0;
     }
 
     void Update()
@@ -51,17 +55,30 @@ public class GameManager : MonoBehaviour
             
         if(!isClearStage)
         {
+            
             score += recentY - targetY;
             isClearStage = true;
-            fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime);
+            
+            FadeIn();
             Invoke("FadeOut", waitTime - fadeTime);
             Invoke("Restart", waitTime);
         }
     }
 
+    void FadeIn()
+    {
+        fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime).OnComplete(ClearStage);
+    }
+
+    void ClearStage()
+    {
+        stage ++;
+    }
+
     // 페이드인, 페이드아웃
     void FadeOut()
     {
+        
         fadeObj.GetComponent<SpriteRenderer>().DOFade(0, fadeTime);
     }
 

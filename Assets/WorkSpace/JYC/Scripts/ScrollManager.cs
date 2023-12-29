@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScrollManager : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class ScrollManager : MonoBehaviour
     [SerializeField] Transform cameraTrans;
 
     [SerializeField] private float verSize;
+    [SerializeField] private Sprite[] wallSprite;
+    [SerializeField] private SpriteRenderer[] scrollRenderers;
+    
+
     private int highestIndex;
     private int lowestIndex;
 
@@ -43,8 +49,19 @@ public class ScrollManager : MonoBehaviour
     void Update()
     {
         Scrolling();
+        Check();
     }
 
+    void Check()
+    {
+        if(scrollRenderers[0].sprite != wallSprite[GameManager.instance.stage])
+        {
+            for (int i = 0; i < scrollRenderers.Length; i++)
+            {
+                scrollRenderers[i].sprite = wallSprite[GameManager.instance.stage];
+            }
+        }
+    }
 
     
 
