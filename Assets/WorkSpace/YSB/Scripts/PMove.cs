@@ -18,11 +18,14 @@ public class PMove : MonoBehaviour
     private bool isDashing = false;
     private int dashCount = 1;
 
+    [SerializeField]
     private bool isCrashing = false;
+    private bool isWallCrashing = false;
 
+    [SerializeField]
     private Vector3 curDirection;
-    private Vector3 left = new Vector3(-1, -1, 0);
-    private Vector3 right = new Vector3(1, -1, 0);
+    private Vector3 left = new Vector3(-1, -1, 0).normalized;
+    private Vector3 right = new Vector3(1, -1, 0).normalized;
 
     float time = 0f;
     private float rad = 45f;
@@ -30,6 +33,7 @@ public class PMove : MonoBehaviour
     private float gravity = 9.81f;
 
     private Vector3 crashPoint;
+    private Vector3 wallCrashPoint;
     private void Start()
     {
         curDirection = left;
@@ -48,8 +52,8 @@ public class PMove : MonoBehaviour
         }
 
         CheckCrash();
-        Move();
         Crash();
+        Move();
     }
 
     private void CheckCrash()
@@ -58,20 +62,29 @@ public class PMove : MonoBehaviour
         RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.left, 0.5f, 1 << LayerMask.NameToLayer("Wall"));
         RaycastHit2D hit3 = Physics2D.Raycast(transform.position, Vector2.right, 0.5f, 1 << LayerMask.NameToLayer("Wall"));
 
+        if (hit2.collider != null || hit3.collider != null)
+        {
+            if (wallCrashPoint != transform.position) { isWallCrashing = false; }
+            if (isWallCrashing == false)
+            {
+                isCrashing = false;
+                curDirection = new Vector3(-curDirection.x, curDirection.y, 0f);
+                wallCrashPoint = transform.position;
+                isWallCrashing = true;
+            }
+        }
         //¹Ù´Ú Ãæµ¹
         if (hit.collider != null)
         {
-            curDirection = new Vector3(-curDirection.x, curDirection.y, 0f);
-            crashPoint = transform.position;
-            isCrashing = true;
-            Debug.Log("¶¥ Ãæµ¹");
-        }
+            if(isCrashing == false)
+            {
+                Debug.Log("¶¥ Ãæµ¹");
+                crashPoint = transform.position;
+                isCrashing = true;
+                isWallCrashing = false;
+            }
 
-        if (hit2.collider != null || hit3.collider != null)
-        {
-            isCrashing = false;
-            curDirection = new Vector3(-curDirection.x, curDirection.y, 0f);
-        }
+        }        
     }
 
     private void Move()
@@ -88,7 +101,7 @@ public class PMove : MonoBehaviour
 
     private void StartDash(Vector3 dir)
     {
-        if(dashCount <= 0) { return; }
+        if (dashCount <= 0 || isCrashing == true) { return; }
         isDashing = true;
         dashCount -= 1;
         curDirection = dir;
@@ -98,7 +111,6 @@ public class PMove : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        Debug.Log("dash");
         float timer = 0f;
         while(true)
         {
@@ -117,14 +129,22 @@ public class PMove : MonoBehaviour
         if(isCrashing == false) { return; }
         time += Time.deltaTime;
 
-        float vx = Mathf.Cos(rad * Mathf.Deg2Rad) * moveSpeed * time;
+        float vx = 0;
+        if(curDirection.x < 0)
+        {
+            vx =  -1f * Mathf.Cos(rad * Mathf.Deg2Rad) * moveSpeed * time;
+        }
+        else
+        {
+            vx = 1f * Mathf.Cos(rad * Mathf.Deg2Rad) * moveSpeed * time;
+        }
         float vy = Mathf.Sin(rad * Mathf.Deg2Rad) * moveSpeed * time;
 
         double y = vy - (0.5 * gravity * Mathf.Pow(time, 2));
 
         transform.position = new Vector2(vx + crashPoint.x, (float)y + crashPoint.y);
 
-        if(y >= 1.5f)
+        if(transform.position.y >= 1.5f + crashPoint.y)
         {
             isCrashing = false;
             dashCount = 1;
@@ -134,6 +154,4 @@ public class PMove : MonoBehaviour
     {
         curDirection = Vector3.Reflect(curDirection, refdir).normalized;
     }
-
-
 }
