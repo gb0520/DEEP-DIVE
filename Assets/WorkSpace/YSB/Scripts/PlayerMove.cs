@@ -216,6 +216,7 @@ public class PlayerMove : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         hp = hp - dmg < 0 ? 0 : hp - dmg;
+        UIManager.instance.SetHp(hp);
         if(hp <= 0)
         {
             Debug.Log("die");

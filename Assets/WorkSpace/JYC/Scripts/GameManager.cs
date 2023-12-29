@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public int stage;
 
-    private float score => Mathf.Abs(player.YPos) - Mathf.Abs(fadeOutFix);
+    public float score => Mathf.Abs(player.YPos) - Mathf.Abs(fadeOutFix);
     private float screenY => Camera.main.orthographicSize * 2;
 
     void Awake()
