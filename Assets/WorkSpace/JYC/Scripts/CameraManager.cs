@@ -15,4 +15,10 @@ public class CameraManager : MonoBehaviour
     {
         transform.position += Vector3.down * cameraMoveSpeed * Time.deltaTime;
     }
+    
+    public void Save()
+    {
+        int score = -(int)transform.position.y;
+        SaveManager.instance.Save(score);
+    }
 }
