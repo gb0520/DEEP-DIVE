@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 left = new Vector3(-1, -1, 0).normalized;
     private Vector3 right = new Vector3(1, -1, 0).normalized;
 
+    public float YPos => transform.position.y;
 
     [SerializeField]
     private Vector2 nowSpeed;
