@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
         transform.position = spawnPos;
     }
 
-
+    // 장애물 초기화 기능 추가해야 함
 
 
 }

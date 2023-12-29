@@ -9,25 +9,13 @@ public class ObstacleManager : MonoBehaviour
 
     public Transform cameraTrans;
     public Vector3 targetPos;
+    public float lowestY;
 
-    // [System.Serializable]
-    // public class SpawnedObstacle
-    // {
-        // public List<GameObject> obstacles;
-    // }
-
-    // public SpawnedObstacle[] spawnedObstacles;
-    
     List<GameObject>[] spawnedObstacles;
 
 
     void Awake()
     {
-        // spawnedObstacles = new SpawnedObstacle[obstaclePrefabs.Length];
-        // for (int i = 0; i < spawnedObstacles.Length; i++)
-        // {
-        //     spawnedObstacles[i].obstacles = new List<GameObject>();
-        // }
         spawnedObstacles = new List<GameObject>[obstaclePrefabs.Length];
         for (int i = 0; i < spawnedObstacles.Length; i++)
         {
@@ -55,6 +43,8 @@ public class ObstacleManager : MonoBehaviour
 
     void SpawnObstacle()
     {
+        if (GameManager.instance.isOverY) return;
+
         // 장애물 소환하고, 그 다음 소환 위치 지정하기
         int spawnRandom = Random.Range(0, obstaclePrefabs.Length);
 
@@ -63,6 +53,7 @@ public class ObstacleManager : MonoBehaviour
         GameObject obstacle = GetObstacle(spawnRandom);
         obstacle.GetComponent<Obstacle>().Spawn(targetPos);
         targetPos = obstacle.GetComponent<Obstacle>().lowest.position;
+        lowestY = targetPos.y;
         RemoveObstacle();
     }
 
@@ -114,6 +105,9 @@ public class ObstacleManager : MonoBehaviour
         return obstacle;
     }
     
-
+    public void ChangeImage()
+    {
+        
+    }
 
 }
