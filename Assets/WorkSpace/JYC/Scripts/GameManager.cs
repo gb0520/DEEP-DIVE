@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
     private int cnt;
 
     public int stage;
-
-    public float score => Mathf.Abs(player.YPos) - Mathf.Abs(fadeOutFix);
+    private float yPos;
+    public float score => Mathf.Abs(yPos) - Mathf.Abs(fadeOutFix);
     private float screenY => Camera.main.orthographicSize * 2;
 
     void Awake()
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if(yPos > player.YPos) yPos = player.YPos;
+
         if(isClearStage) return;
 
         if (targetY < cameraTrans.position.y - 2 * screenY) return;

@@ -1327,7 +1327,7 @@ MonoBehaviour:
   cameraTrans: {fileID: 1284982717}
   waitTime: 10
   fadeTime: 2
-  player: {fileID: 0}
+  player: {fileID: 1378697833}
   targetY: 0
   recentY: 0
   fadeOutFix: 0
@@ -1444,7 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10abe7c12f3554147983f2938eab52da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1378697833}
 --- !u!1 &1320226881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,6 +1527,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1378697833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6365842248918198822, guid: 170dced143045f547bd16d32e6aef3bd, type: 3}
+  m_PrefabInstance: {fileID: 682083967}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4d5ba7119b509449cf89a9028709e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1456419652
 GameObject:
   m_ObjectHideFlags: 0
