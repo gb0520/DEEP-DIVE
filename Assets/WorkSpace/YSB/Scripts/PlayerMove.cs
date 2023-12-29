@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D rigid;
+    private Animator anim;
 
     private KeyCode leftKey = KeyCode.A;
     private KeyCode rightKey = KeyCode.D;
@@ -42,6 +43,7 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponentInChildren<Animator>();
         curDirection = left;
 
         hp = maxHp;
@@ -69,7 +71,8 @@ public class PlayerMove : MonoBehaviour
                 rigid.gravityScale = 0f;
                 rigid.drag = 0f;
                 rigid.velocity = Vector3.zero;
-    
+                anim.SetBool("isJump", false);
+
                 curDirection = new Vector3(curDirection.x, -curDirection.y, 0f);
                 isCrashing = false;
             }
@@ -138,6 +141,18 @@ public class PlayerMove : MonoBehaviour
         }
         jumpForce = force;
     }
+
+    public void CheckReflect(float dir)
+    {
+        if(dir < 0 && curDirection.x < 0)
+        {
+            curDirection = right;
+        }
+        if(dir>0 && curDirection.x>0)
+        {
+            curDirection = left;
+        }
+    }
     public void Reflect(Vector3 refdir)
     {
         isCrashing = false;
@@ -151,6 +166,7 @@ public class PlayerMove : MonoBehaviour
     public void ReflectFloor(Vector3 refdir)
     {
         isCrashing = true;
+        anim.SetBool("isJump", true);   //¾Ö´Ï
         
         rigid.velocity = Vector2.zero;
         Vector3 dir = Vector3.Reflect(curDirection, refdir);
