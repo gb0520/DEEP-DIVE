@@ -6,6 +6,11 @@ public class ObstacleBase : ObjBase
 {
     [SerializeField]
     protected int damage;
+
+    public void Bomb()
+    {
+        this.gameObject.SetActive(false);
+    }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))

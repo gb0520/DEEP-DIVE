@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoDamage : ItemBase
+public class Star : ItemBase
 {
     protected override void CrashObj()
     {
-        target.NoDamage();
-        
+        target.Bomb();
+        this.gameObject.SetActive(false);
     }
 }

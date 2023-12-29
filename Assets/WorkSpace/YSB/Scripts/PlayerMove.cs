@@ -37,6 +37,8 @@ public class PlayerMove : MonoBehaviour
     private bool isCrashing = false;
     private float jumpForce;
 
+    [SerializeField]
+    private float bombSize;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -116,6 +118,17 @@ public class PlayerMove : MonoBehaviour
     }
 
     //----------------------------------------------Crash
+    private void SetDirection(float x)
+    {
+        if (x < 0)
+        {
+            curDirection = left;
+        }
+        else
+        {
+            curDirection = right;
+        }
+    }
     public void SetJumpForce(float force = 0f)
     {
         if (force == 0f)
@@ -132,7 +145,8 @@ public class PlayerMove : MonoBehaviour
         rigid.drag = 0f;
         Vector3 dir = Vector3.Reflect(curDirection, refdir);
 
-        curDirection = new Vector3(dir.x, -1, 0f).normalized;
+        SetDirection(dir.x);
+        //curDirection = new Vector3(dir.x, -1, 0f).normalized;
     }    
     public void ReflectFloor(Vector3 refdir)
     {
@@ -142,9 +156,10 @@ public class PlayerMove : MonoBehaviour
         Vector3 dir = Vector3.Reflect(curDirection, refdir);
         curDirection = new Vector3(dir.x, dir.y, 0f).normalized;
         Debug.Log(refdir);
-        if(refdir.y > 0 || refdir.x == 1 || refdir.x == -1)
+        if (refdir.y > 0 || refdir.x == 1 || refdir.x == -1)
         {
-            curDirection = new Vector3(dir.x, -1, 0f).normalized;
+            //curDirection = new Vector3(dir.x, -1, 0f).normalized;
+            SetDirection(dir.x);
         }
 
         dashCount = 1;  //대쉬 횟수 충전
@@ -153,12 +168,15 @@ public class PlayerMove : MonoBehaviour
         rigid.AddForce(curDirection * jumpForce, ForceMode2D.Impulse);
     }
 
+    
+
     public void TakeDamage(int dmg)
     {
         hp = hp - dmg < 0 ? 0 : hp - dmg;
         if(hp <= 0)
         {
             Debug.Log("die");
+            GameManager.instance.GameOver();
         }
     }
 
@@ -166,20 +184,36 @@ public class PlayerMove : MonoBehaviour
     {
         hp = hp + heal > maxHp ? maxHp : hp + heal;
     }
+    public void Bomb()
+    {
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, bombSize);
+        foreach(var col in cols)
+        {
+            if(col.CompareTag("Obstacle"))
+            {
+                col.SendMessage("Bomb");
+            }
+        }
+    }
 
-    public void NoDamage()
-    {
-        gameObject.layer = 9;
-        Invoke("OnDamage", 1f);
-    }
-    public void OnDamage()
-    {
-        gameObject.layer = 0;
-    }
+    //public void NoDamage()
+    //{
+    //    gameObject.layer = 9;
+    //    Invoke("OnDamage", 1f);
+    //}
+    //public void OnDamage()
+    //{
+    //    gameObject.layer = 0;
+    //}
 
     public void Save()
     {
         int score = -(int)transform.position.y;
         SaveManager.instance.Save(score);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, bombSize);
     }
 }
