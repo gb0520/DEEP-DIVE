@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public int stage;
     private float yPos;
-    public float score => Mathf.Abs(yPos) - Mathf.Abs(fadeOutFix);
+    public float score;
     private float screenY => Camera.main.orthographicSize * 2;
 
     void Awake()
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
             instance = this;
 
         fadeOutFix = 0f;
+        yPos = player.YPos;
         recentY = player.YPos;
         targetY = recentY - length;
         stage = cnt = 0;
@@ -50,11 +51,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(yPos > player.YPos) yPos = player.YPos;
+        setScore();
 
         if(isClearStage) return;
 
-        if (targetY < cameraTrans.position.y - 2 * screenY) return;
+        // if (targetY < cameraTrans.position.y - 2 * screenY) return;
+        if (targetY < player.YPos) return;
         
         if(!isOverY)
         {
@@ -75,6 +77,15 @@ public class GameManager : MonoBehaviour
             Invoke("FadeOut", waitTime - fadeTime);
             Invoke("Restart", waitTime);
         }
+    }
+
+    void setScore()
+    {
+        if(isClearStage) return;
+
+
+        if(yPos > player.YPos) yPos = player.YPos;
+        score = Mathf.Abs(yPos) - Mathf.Abs(fadeOutFix);
     }
 
     void FadeIn()
