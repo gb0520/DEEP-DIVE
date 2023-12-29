@@ -13,4 +13,14 @@ public class Wall : MonoBehaviour
             col.gameObject.SendMessage("Reflect", refdir);
         }
     }
+    
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            Vector3 refdir = col.contacts[0].normal;
+            col.gameObject.SendMessage("CheckReflect", refdir.x);
+            Debug.Log(refdir.x);
+        }
+    }
 }
