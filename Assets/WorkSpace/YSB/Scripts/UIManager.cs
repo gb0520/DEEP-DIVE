@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     private TMP_Text meterText;
     public Image[] hpImg;
 
-    private float fadeTime = 5f;
+    private float fadeTime = 3f;
 
     private void Awake()
     {
@@ -44,9 +44,19 @@ public class UIManager : MonoBehaviour
         int m = (int)(meter / 100) * 100;
         meterText.text = m.ToString("F0") + "M\nµ¹ÆÄ";
 
+        DOTmp(meterText, 2f);
+
+        Invoke("OutMeter", 3f);
+    }
+    void OutMeter()
+    {
         meterText.DOFade(0, fadeTime);
     }
-
+    public void DOTmp(TMP_Text text, float duration)
+    {
+        text.maxVisibleCharacters = 0;
+        DOTween.To(x => text.maxVisibleCharacters = (int)x, 0f, text.text.Length, duration);
+    }
     public void SetHp(int hp)
     {
         for (int i = 0; i < hpImg.Length; ++i)

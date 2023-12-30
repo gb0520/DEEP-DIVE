@@ -147,7 +147,8 @@ public class PlayerMove : MonoBehaviour
         isLoading = loading;
         if(isLoading == true)
         {
-            preDirection = curDirection;
+            if(curDirection != Vector3.down) { preDirection = curDirection; }
+
             curDirection = Vector2.down;
             rigid.velocity = curDirection * moveSpeed;
             return;
