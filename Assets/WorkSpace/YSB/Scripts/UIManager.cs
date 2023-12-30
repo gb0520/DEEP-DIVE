@@ -141,24 +141,16 @@ public class UIManager : MonoBehaviour
     
     public void GameOverUI()
     {
-        
-        gameOverText.maxVisibleCharacters = 0;
         gameOverText.text = gameOverString[Random.Range(0, gameOverString.Length)];
-        DOTween.To(x => gameOverText.maxVisibleCharacters = (int)x, 0f, gameOverText.text.Length, 2f).OnComplete(() => 
-        {
-            bestScoreText.maxVisibleCharacters = 0;
-            string bestScore = "최고 점수 : " + SaveManager.instance.highestScore.ToString() + "M";
-            bestScoreText.text = bestScore;
-            DOTween.To(x => bestScoreText.maxVisibleCharacters = (int)x, 0f, bestScoreText.text.Length, 1f).OnComplete(()=>
-            { 
-                recentScoreText.maxVisibleCharacters = 0;
-                string recentScore = "최근 점수 : " + ((int)GameManager.instance.score).ToString() + "M";
-                recentScoreText.text = recentScore;
-                DOTween.To(x => recentScoreText.maxVisibleCharacters = (int)x, 0f, recentScoreText.text.Length, 1f).OnComplete(() => restartBtn.SetActive(true));
-            });
-        });
-        
-        
+        bestScoreText.maxVisibleCharacters = 0;
+        string bestScore = "최고 점수 : " + SaveManager.instance.highestScore.ToString() + "M";
+        bestScoreText.text = bestScore;
+        DOTween.To(x => bestScoreText.maxVisibleCharacters = (int)x, 0f, bestScoreText.text.Length, 1f);
+
+        recentScoreText.maxVisibleCharacters = 0;
+        string recentScore = "최근 점수 : " + ((int)GameManager.instance.score).ToString() + "M";
+        recentScoreText.text = recentScore;
+        DOTween.To(x => recentScoreText.maxVisibleCharacters = (int)x, 0f, recentScoreText.text.Length, 1f).OnComplete(() => restartBtn.SetActive(true));
     }
 
     
