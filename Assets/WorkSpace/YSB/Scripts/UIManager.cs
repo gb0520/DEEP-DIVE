@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System.Linq.Expressions;
+using DG.Tweening.Core.Easing;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +14,12 @@ public class UIManager : MonoBehaviour
     private GameObject panel_Pause;
     private TMP_Text scoreText;
     private TMP_Text meterText;
+    [SerializeField] GameObject titleView;
+    [SerializeField] Transform creditView;
+    [SerializeField] Vector2 creditOpenedPos;
+    [SerializeField] Vector2 creditClosedPos;
+    [SerializeField] float creditDuration;
+    private bool isOpen;
     public Image[] hpImg;
 
     private float fadeTime = 3f;
@@ -24,7 +32,9 @@ public class UIManager : MonoBehaviour
         }
         panel_Pause = transform.Find("Pause").gameObject;
         scoreText = transform.Find("Text_Score").GetComponent<TMP_Text>();      
-        meterText = transform.Find("Text_Meter").GetComponent<TMP_Text>();        
+        meterText = transform.Find("Text_Meter").GetComponent<TMP_Text>();      
+
+        // titleView.SetActive(true);
     }
     private void Update()
     {
@@ -62,7 +72,7 @@ public class UIManager : MonoBehaviour
         }
         meterText.gameObject.SetActive(true);
         int m = (int)(meter / 100) * 100;
-        meterText.text = m.ToString("F0") + "M\n����";
+        meterText.text = m.ToString("F0") + "M\n����";
 
         DOTmp(meterText, 2f);
 
@@ -87,5 +97,21 @@ public class UIManager : MonoBehaviour
         {
             hpImg[i].enabled = true;
         }
+    }
+
+
+    public void CreditView()
+    {
+        // 열려 있으면 닫힘
+        if(isOpen)
+        {
+            creditView.DOLocalMove(creditClosedPos, creditDuration).SetEase(Ease.InOutBack);
+        }
+        // 닫혀 있으면 열림
+        else
+        {
+            creditView.DOLocalMove(creditOpenedPos, creditDuration).SetEase(Ease.OutBack);
+        }
+        isOpen = !isOpen;
     }
 }
