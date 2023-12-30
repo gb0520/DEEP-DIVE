@@ -11,7 +11,9 @@ public class ScrollManager : MonoBehaviour
 
     [SerializeField] private float verSize;
     [SerializeField] private Sprite[] wallSprite;
+    [SerializeField] private Sprite[] bgSprite;
     [SerializeField] private SpriteRenderer[] scrollRenderers;
+    [SerializeField] private SpriteRenderer[] scrollRenderers_bg;
     
 
     private int highestIndex;
@@ -59,6 +61,10 @@ public class ScrollManager : MonoBehaviour
             for (int i = 0; i < scrollRenderers.Length; i++)
             {
                 scrollRenderers[i].sprite = wallSprite[GameManager.instance.stage];
+            }
+            for (int i = 0; i < scrollRenderers_bg.Length; i++)
+            {
+                scrollRenderers_bg[i].sprite = bgSprite[GameManager.instance.stage];
             }
         }
     }

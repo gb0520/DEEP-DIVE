@@ -19,6 +19,9 @@ public class PlayerMove : MonoBehaviour
     public float YPos => transform.position.y;
 
     [SerializeField]
+    private PlayerDashEft playerDashEft;
+
+    [SerializeField]
     private Vector2 nowSpeed;
 
     [SerializeField]
@@ -116,6 +119,7 @@ public class PlayerMove : MonoBehaviour
     void ChargeDash()
     {
         dashCount = 1;
+        playerDashEft.Play_Charge();
     }
 
     private void StartDash(Vector3 dir)
@@ -126,6 +130,9 @@ public class PlayerMove : MonoBehaviour
         curDirection = dir;
         rigid.velocity = curDirection * dashSpeed;
         StartCoroutine(Dash());
+
+        playerDashEft.Stop_Charge();
+        playerDashEft.Play_Use();
     }
 
     private IEnumerator Dash()
