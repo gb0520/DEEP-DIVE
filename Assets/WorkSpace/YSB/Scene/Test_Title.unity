@@ -9828,6 +9828,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Level1
       objectReference: {fileID: 0}
+    - target: {fileID: 4218605957405846394, guid: 3831df1aee9a515489829a3f8800ed6c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.4064746
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218605957405846394, guid: 3831df1aee9a515489829a3f8800ed6c, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.046762705
+      objectReference: {fileID: 0}
     - target: {fileID: 7702365787409079658, guid: 3831df1aee9a515489829a3f8800ed6c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.25

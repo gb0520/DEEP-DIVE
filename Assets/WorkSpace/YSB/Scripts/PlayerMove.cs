@@ -38,7 +38,7 @@ public class PlayerMove : MonoBehaviour
     private float dashTime;
     private bool isDashing = false;
     [SerializeField]
-    private int dashCount = 1;
+    private int dashCount =  2;
 
     private bool isCrashing = false;
     private bool isLoading = false;
@@ -59,6 +59,8 @@ public class PlayerMove : MonoBehaviour
 
         jumpForce = moveSpeed * 1.5f;
         hp = maxHp;
+
+        StartCoroutine(ChargeDashCount());
     }
     private void Update()
     {
@@ -105,26 +107,35 @@ public class PlayerMove : MonoBehaviour
     }
 
     //----------------------------------------------Move
+
+    public void Accel()
+    {
+        maxSpeed *= 1.25f;
+    }
     private void Move()
     {
         if (isDashing == true || isCrashing == true || isLoading == true) { return; }
-        moveSpeed += Time.deltaTime;
-        if (moveSpeed >= maxSpeed)
+        if(moveSpeed < maxSpeed)
         {
-            moveSpeed = maxSpeed;
+            moveSpeed += Time.deltaTime;
+            if (moveSpeed >= maxSpeed)
+            {
+                moveSpeed = maxSpeed;
+            }
         }
         rigid.velocity = curDirection * moveSpeed;
     }
 
     void ChargeDash()
     {
-        dashCount = 1;
+        //dashCount = 1;
         playerDashEft.Play_Charge();
     }
 
     private void StartDash(Vector3 dir)
     {
-        if (dashCount <= 0 || isCrashing == true || isLoading == true) { return; }
+        if (isDashing || dashCount <= 0 || isLoading == true) { return; }
+        isCrashing = false;
         isDashing = true;
         dashCount -= 1;
         curDirection = dir;
@@ -133,6 +144,24 @@ public class PlayerMove : MonoBehaviour
 
         playerDashEft.Stop_Charge();
         playerDashEft.Play_Use();
+    }
+
+    private IEnumerator ChargeDashCount()
+    {
+        float timer = 0f;
+        while (true)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 10f)
+            {
+                timer -= 2f;
+                if(dashCount < 2)
+                {
+                    dashCount++;
+                }
+            }
+            yield return null;
+        }
     }
 
     private IEnumerator Dash()
@@ -179,6 +208,7 @@ public class PlayerMove : MonoBehaviour
     public void fall()
     {
         if (curDirection != Vector3.down) { preDirection = curDirection; }
+        Debug.Log("Ãæµ¹");
         curDirection = Vector2.down;
         rigid.velocity = curDirection * moveSpeed;
         Invoke("ReturnDir", 2f);
@@ -305,8 +335,8 @@ public class PlayerMove : MonoBehaviour
     public void NoDamage()
     {
         isHit = false;
-        transform.GetChild(0).gameObject.layer = 9;
-        Invoke("OnDamage", 0.4f);
+        //transform.GetChild(0).gameObject.layer = 9;
+        //Invoke("OnDamage", 0.4f);
     }
     public void OnDamage()
     {

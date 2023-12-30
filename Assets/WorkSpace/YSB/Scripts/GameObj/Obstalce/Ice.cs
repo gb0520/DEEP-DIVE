@@ -14,32 +14,33 @@ public class Ice : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        dir = Vector2.zero;
     }
     private void OnDisable()
     {
         dir = Vector2.zero;
     }
-    public void SetIce(Vector2 pos)
-    {
-        transform.position = pos;
-        float dirx;
-        if (transform.position.x < 0)
-        {
-            dirx = Random.Range(0, 0.5f);
-        }
-        else
-        {
-            dirx = Random.Range(-0.5f, 0);
-        }
+    //public void SetIce(Vector2 pos)
+    //{
+    //    transform.position = pos;
+    //    float dirx;
+    //    if (transform.position.x < 0)
+    //    {
+    //        dirx = Random.Range(0, 0.5f);
+    //    }
+    //    else
+    //    {
+    //        dirx = Random.Range(-0.5f, 0);
+    //    }
 
-        dir = new Vector2(dirx, -1).normalized;
-        limitY = pos.y - 20f;
+    //    dir = new Vector2(dirx, -1).normalized;
+    //    limitY = pos.y - 20f;
 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Debug.Log(angle);
-        Quaternion degree = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-        transform.rotation = degree;
-    }
+    //    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    //    Debug.Log(angle);
+    //    Quaternion degree = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+    //    transform.rotation = degree;
+    //}
 
     private void Update()
     {
@@ -60,8 +61,17 @@ public class Ice : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.SendMessage("fall");
+            collision.gameObject.GetComponentInParent<PlayerMove>().fall();
             gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            dir = Vector2.down;
+            limitY = collision.transform.position.y - 20f;
         }
     }
 }
