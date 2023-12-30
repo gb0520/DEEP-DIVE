@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour
     public float score;
     private float screenY => Camera.main.orthographicSize * 2;
 
-    public bool gameStart = false;
-
     void Awake()
     {
         if(!instance)
