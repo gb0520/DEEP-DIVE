@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: uEvent_Enter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4405781615294934970, guid: b3ab97eb73cc3844a9e440d13b3d88b4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5875097205700779615, guid: b3ab97eb73cc3844a9e440d13b3d88b4, type: 3}
       propertyPath: m_Name
       value: CheckTag2D
