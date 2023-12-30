@@ -299,16 +299,17 @@ public class PlayerMove : MonoBehaviour
 
     
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         if (isHit == true || GameManager.instance.isGameOver) { return; }
-        hp = hp - dmg < 0 ? 0 : hp - dmg;
+        //hp = hp - dmg < 0 ? 0 : hp - dmg;
         Invoke("NoDamage", 0.4f);
         //NoDamage();
         isHit = true;
         anim.SetTrigger("isHit");
         EffectManager.instance.DrawEffect();
-        UIManager.instance.SetHp(hp);
+        //UIManager.instance.SetHp(hp);
+        GameManager.instance.MinusTime(dmg);
         PauseManager.instance.TakeDamageTime();
         if(hp <= 0)
         {

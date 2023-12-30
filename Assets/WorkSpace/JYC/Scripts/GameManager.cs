@@ -142,15 +142,12 @@ public class GameManager : MonoBehaviour
         player.SetDirection(isClearStage);  //플레이어 낙하 방향 조정
     }
 
-
-
     public void GameOver()
     {
         SaveManager.instance.Save((int)score);
         isGameOver = true;
         Time.timeScale = 0f;
     }
-
 
     public void GameRestart()
     {
@@ -160,6 +157,12 @@ public class GameManager : MonoBehaviour
     public void TakeTime(float time)
     {
         curTime = curTime + time < maxTime ? curTime + time : maxTime;
+    }
+
+    public void MinusTime(float time)
+    {
+        curTime -= time;
+        UIManager.instance.SetGuage(curTime / maxTime);
     }
 
     private void SpendTime()

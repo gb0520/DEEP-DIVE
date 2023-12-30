@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b56d55ec84f744b8a38e91e9041f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
   endSize: {x: 0, y: 0}
   time: 0
 --- !u!61 &342636839101146380
