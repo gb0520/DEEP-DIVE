@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Init();
         if(instance==null)
         {
             instance = this;
@@ -51,6 +52,23 @@ public class UIManager : MonoBehaviour
             GamePause();
         }
     }
+
+
+    void Init()
+    {
+        if(!titleView)
+            titleView = GameObject.Find("Title View");
+
+        if(!titleTxt)
+            titleTxt = GameObject.Find("How to start").GetComponent<TMP_Text>();
+
+        if(!creditCloseBtn)
+            creditCloseBtn = GameObject.Find("CreditOff");
+
+        if(!creditView)
+            creditView = GameObject.Find("Credit Image").GetComponent<Transform>();
+    }
+
     public void GamePause()
     {
         bool isOpen = !panel_Pause.activeSelf;
