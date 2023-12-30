@@ -28,8 +28,8 @@ public class CameraManager : MonoBehaviour
         {
             if(!isComing)
             {
-                monster.DOKill();
-                monster.DOLocalMoveY(3, monsterInsideTime).SetEase(Ease.OutQuart);
+                // monster.DOKill();
+                // monster.DOLocalMoveY(4, 0.2f).OnComplete(()=>monster.DOLocalMoveY(-4, monsterInsideTime * 4));
                 isComing = true;
             }
             return;    
@@ -39,8 +39,8 @@ public class CameraManager : MonoBehaviour
         if(isComing)
         {
             isComing = false;
-            monster.DOKill();
-            monster.DOLocalMoveY(4, monsterInsideTime).SetEase(Ease.InExpo);
+            // monster.DOKill();
+            // monster.DOLocalMoveY(4, monsterInsideTime * 2);
         }
 
         transform.position = new Vector3(0, player.YPos, transform.position.z);
