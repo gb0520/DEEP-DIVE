@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 
 
     public bool isGameOver;
+    public float maxTime;
+    public float curTime;
 
     void Awake()
     {
@@ -52,11 +54,14 @@ public class GameManager : MonoBehaviour
         recentY = player.YPos;
         targetY = recentY - length;
         stage = cnt = 0;
+
+        curTime = maxTime;
     }
 
     void Update()
     {
         setScore();
+        SpendTime();
 
         if(stage == 2) 
         {
@@ -150,5 +155,20 @@ public class GameManager : MonoBehaviour
     public void GameRestart()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void TakeTime(float time)
+    {
+        curTime = curTime + time < maxTime ? curTime + time : maxTime;
+    }
+
+    private void SpendTime()
+    {
+        curTime -= Time.deltaTime;
+        UIManager.instance.SetGuage(curTime / maxTime);
+        if (curTime <= 0)
+        {
+            isGameOver = true;
+        }
     }
 }

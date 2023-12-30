@@ -60,7 +60,7 @@ public class PlayerMove : MonoBehaviour
         jumpForce = moveSpeed * 1.5f;
         hp = maxHp;
 
-        StartCoroutine(ChargeDashCount());
+        //StartCoroutine(ChargeDashCount());
     }
     private void Update()
     {
@@ -128,16 +128,16 @@ public class PlayerMove : MonoBehaviour
 
     void ChargeDash()
     {
-        //dashCount = 1;
+        dashCount = 1;
         playerDashEft.Play_Charge();
     }
 
     private void StartDash(Vector3 dir)
     {
-        if (isDashing || dashCount <= 0 || isLoading == true) { return; }
-        isCrashing = false;
+        if (isDashing || isLoading == true) { return; }
         isDashing = true;
-        dashCount -= 1;
+        isCrashing = false;
+        //dashCount -= 1;
         curDirection = dir;
         rigid.velocity = curDirection * dashSpeed;
         StartCoroutine(Dash());
@@ -360,6 +360,8 @@ public class PlayerMove : MonoBehaviour
         moveSpeed = maxSpeed;
         rigid.velocity = Vector2.zero;
 
+        isDashing = false;
+
         float x = xdir != 0 ? xdir : curDirection.x < 0 ? -1 : 1;
         float y = ydir;
 
@@ -367,7 +369,7 @@ public class PlayerMove : MonoBehaviour
 
         if(y > 0)
         {
-            isCrashing = true;
+            //isCrashing = true;
             rigid.gravityScale = 1f;
             rigid.drag = 1.5f;
             rigid.AddForce(curDirection * jumpForce, ForceMode2D.Impulse);
