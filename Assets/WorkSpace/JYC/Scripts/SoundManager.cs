@@ -21,13 +21,14 @@ public class SoundManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum Sfx { }
+    public enum Sfx { dash }
     // 각 효과음에 맞게 만들기
 
     void Awake()
     {
         instance = this;
         Init();
+        PlayBgm(true);
     }
 
     void Init()
