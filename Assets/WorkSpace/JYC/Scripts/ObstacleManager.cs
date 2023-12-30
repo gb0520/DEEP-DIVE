@@ -133,4 +133,16 @@ public class ObstacleManager : MonoBehaviour
         return obstacle;
     }
 
+    [ContextMenu("LoadObstaclePrefabs")]
+    public void LoadObstaclePrefabs()
+    {
+        // obstacleTypes = new obstaclesType[3];
+        for (int i = 0; i < 3; i++)
+        {
+            string path = $"Prefabs/Course/{(i+1)}";
+            obstacleTypes[i].obstaclePrefabs = Resources.LoadAll<GameObject>(path);
+        }
+        
+    }
 }
+
