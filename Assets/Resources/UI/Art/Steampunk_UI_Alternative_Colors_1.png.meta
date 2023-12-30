@@ -45,7 +45,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -293,14 +292,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Steampunk_UI_Alternative_Colors_1_4: -2609776507671667978
-      Steampunk_UI_Alternative_Colors_1_5: -1743474578796151217
-      Steampunk_UI_Alternative_Colors_1_1: 3912504988194230852
-      Steampunk_UI_Alternative_Colors_1_2: -6169793712705254692
-      Steampunk_UI_Alternative_Colors_1_0: 4936998130221711999
-      Steampunk_UI_Alternative_Colors_1_6: 7988440511071066324
-      Steampunk_UI_Alternative_Colors_1_3: 1379336649267586762
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

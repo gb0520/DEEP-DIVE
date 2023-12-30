@@ -57,7 +57,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -389,18 +388,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Steampunk_UI_Loading_Bars_10: 1952343433761082409
-      Steampunk_UI_Loading_Bars_5: 1174196252660153231
-      Steampunk_UI_Loading_Bars_6: -8688575788626425756
-      Steampunk_UI_Loading_Bars_2: -2043666936774967533
-      Steampunk_UI_Loading_Bars_4: 8895644708304838847
-      Steampunk_UI_Loading_Bars_1: -483322954633082500
-      Steampunk_UI_Loading_Bars_8: 1842958952090477906
-      Steampunk_UI_Loading_Bars_7: 1027427055973983239
-      Steampunk_UI_Loading_Bars_3: 4970123726238727204
-      Steampunk_UI_Loading_Bars_9: -8986406218081867073
-      Steampunk_UI_Loading_Bars_0: -8706662380335870506
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

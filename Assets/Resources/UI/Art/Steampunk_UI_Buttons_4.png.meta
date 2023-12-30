@@ -45,7 +45,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -293,14 +292,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Steampunk_UI_Buttons_4_1: 6299372755678226092
-      Steampunk_UI_Buttons_4_6: -7211710997853252399
-      Steampunk_UI_Buttons_4_5: -1068115291860204702
-      Steampunk_UI_Buttons_4_0: -1923020103155170584
-      Steampunk_UI_Buttons_4_2: -8021671653886854194
-      Steampunk_UI_Buttons_4_3: 8180382320130004550
-      Steampunk_UI_Buttons_4_4: -5403693800442964162
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

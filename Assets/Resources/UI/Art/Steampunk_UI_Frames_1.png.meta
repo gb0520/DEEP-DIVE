@@ -36,7 +36,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -221,11 +220,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Steampunk_UI_Frames_1_2: 2793176097393672575
-      Steampunk_UI_Frames_1_1: 5729563869933660098
-      Steampunk_UI_Frames_1_3: 2750874915692591106
-      Steampunk_UI_Frames_1_0: -1676058066343224301
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

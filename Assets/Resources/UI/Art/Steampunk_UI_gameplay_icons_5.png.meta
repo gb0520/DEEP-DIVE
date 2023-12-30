@@ -60,7 +60,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -413,19 +412,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Steampunk_UI_gameplay_icons_5_9: 682159816221660716
-      Steampunk_UI_gameplay_icons_5_10: 6687641280360898181
-      Steampunk_UI_gameplay_icons_5_1: -3132344314130385955
-      Steampunk_UI_gameplay_icons_5_4: 1059485604736263095
-      Steampunk_UI_gameplay_icons_5_6: 7121681975922686079
-      Steampunk_UI_gameplay_icons_5_7: 3271078486773601058
-      Steampunk_UI_gameplay_icons_5_0: -2174846464105980280
-      Steampunk_UI_gameplay_icons_5_2: 4579880661164809580
-      Steampunk_UI_gameplay_icons_5_5: -4086525950626956869
-      Steampunk_UI_gameplay_icons_5_11: -4010928615170407511
-      Steampunk_UI_gameplay_icons_5_8: -7673649046476951384
-      Steampunk_UI_gameplay_icons_5_3: -469324343472571192
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

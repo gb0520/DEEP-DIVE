@@ -84,7 +84,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -605,27 +604,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Steampunk_UI_settings_icons_2_0: -1281635792446132261
-      Steampunk_UI_settings_icons_2_10: 776235566075771346
-      Steampunk_UI_settings_icons_2_6: -8549169311651899263
-      Steampunk_UI_settings_icons_2_11: -4531694429024335586
-      Steampunk_UI_settings_icons_2_7: -9042617556960072196
-      Steampunk_UI_settings_icons_2_1: 5887420051842301485
-      Steampunk_UI_settings_icons_2_16: -5676243579101948808
-      Steampunk_UI_settings_icons_2_8: -1860891720754277442
-      Steampunk_UI_settings_icons_2_14: 3518137006509659680
-      Steampunk_UI_settings_icons_2_13: 1764791996157905038
-      Steampunk_UI_settings_icons_2_4: 7792519747060348332
-      Steampunk_UI_settings_icons_2_15: 4689721430817028124
-      Steampunk_UI_settings_icons_2_12: -2285294537092878175
-      Steampunk_UI_settings_icons_2_17: 4318763529297658534
-      Steampunk_UI_settings_icons_2_18: -2731087584029321313
-      Steampunk_UI_settings_icons_2_2: 1330006514723046366
-      Steampunk_UI_settings_icons_2_5: -5144950009089465055
-      Steampunk_UI_settings_icons_2_9: 8232524045421312196
-      Steampunk_UI_settings_icons_2_19: -14413193099235288
-      Steampunk_UI_settings_icons_2_3: 2653641916310844845
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

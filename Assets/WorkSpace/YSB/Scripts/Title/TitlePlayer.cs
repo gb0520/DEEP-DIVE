@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TitlePlayer : MonoBehaviour
 {
@@ -20,11 +21,15 @@ public class TitlePlayer : MonoBehaviour
     public float JumpForce;
 
     private bool isDash = true;
+    private bool isEasteEgg = false;
+    private Vector2 initPos;
     private void Awake()
     {
         manager_Title = FindObjectOfType<TitleManager>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        initPos = transform.position;
     }
     private void Start()
     {
@@ -67,6 +72,11 @@ public class TitlePlayer : MonoBehaviour
     public void PickUp()
     {
         anim.SetBool("PickUp", true);
+        if(isEasteEgg == true)
+        {
+            Invoke("Bye", 1.5f);
+            return;
+        }
         StartCoroutine(CreateEnemy());
     }
 
@@ -108,8 +118,34 @@ public class TitlePlayer : MonoBehaviour
     {
         if(collision.gameObject.layer == 6)
         {
+            if (isEasteEgg) { return; }
             GetComponent<SpriteRenderer>().flipX = true;
             rigid.velocity = new Vector2(1, -1).normalized * 10f;
         }
+    }
+
+
+    //이스터에그
+    public void GoToZem()
+    {
+        isEasteEgg = true;
+        transform.DOMove(new Vector2(point.position.x, transform.position.y), 1f);
+    }
+    void Bye()
+    {
+        rigid.gravityScale = 0;
+        rigid.drag = 0f;
+        transform.DOMove(new Vector2(4f, transform.position.y), 4f);
+        GetComponent<SpriteRenderer>().flipX = true;
+    }
+    public void End()
+    {
+        isEasteEgg = false;
+        transform.position = initPos;
+        GetComponent<SpriteRenderer>().flipX = false;
+        manager_Title.EndEasteEgg();
+        point.gameObject.SetActive(true);
+        rigid.gravityScale = 1;
+        rigid.drag = 1.5f;
     }
 }

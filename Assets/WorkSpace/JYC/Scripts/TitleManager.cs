@@ -37,6 +37,11 @@ public class TitleManager : MonoBehaviour
     private float downSpeed = 10f;
     [SerializeField]
     private float maxSpeed = 2f;
+
+    [SerializeField]
+    private float waitTime = 60f;
+    private float timer = 0;
+    private bool isEasteEgg = false;
     void Init()
     {
         if(!titleView)
@@ -61,6 +66,20 @@ public class TitleManager : MonoBehaviour
         SetTitleFade(0.3f);
 
         target = FindObjectOfType<TitlePlayer>();
+    }
+
+    private void Update()
+    {
+        if(titleView.activeSelf == true && isEasteEgg == false)
+        {
+            timer += Time.deltaTime;
+            if(timer >= waitTime)
+            {
+                timer = 0f;
+                isEasteEgg = true;
+                target.GoToZem();
+            }
+        }
     }
 
     void SetTitleFade(float value)
@@ -90,6 +109,11 @@ public class TitleManager : MonoBehaviour
 
     public void StartBtn()
     {
+        if(isEasteEgg == true)
+        {
+            isEasteEgg = false;
+            target.End();
+        }
         // 시작한다는 함수 추가?
         Debug.Log("Pressed Start Btn");
         titleView.SetActive(false);
@@ -113,5 +137,10 @@ public class TitleManager : MonoBehaviour
     {
         // 씬 이동하는 값 추가
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void EndEasteEgg()
+    {
+        isEasteEgg = false;
     }
 }
