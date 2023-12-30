@@ -214,14 +214,37 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("isJump", true);   //애니
         
         rigid.velocity = Vector2.zero;
-        Vector3 dir = Vector3.Reflect(curDirection, refdir);
-        curDirection = new Vector3(dir.x, dir.y, 0f).normalized;
+        //Vector3 dir = Vector3.Reflect(curDirection, refdir);
+        //curDirection = new Vector3(dir.x, dir.y, 0f).normalized;
         Debug.Log(refdir);
-        if (refdir.y > 0 || refdir.x == 1 || refdir.x == -1)
+        //if (refdir.y > 0 || refdir.x != 0)//refdir.x == 1 || refdir.x == -1)
+        //{
+        //    //curDirection = new Vector3(dir.x, -1, 0f).normalized;
+        //    SetDirection(dir.x);
+        //}
+
+        if(refdir.y < -0.5f)    //위로 튕겨져
         {
-            //curDirection = new Vector3(dir.x, -1, 0f).normalized;
-            SetDirection(dir.x);
+            float x = curDirection.x;
+            float y = 1;
+
+            curDirection = new Vector2(x, y);
         }
+        else if(refdir.y > 0.5f)//아래로 튕겨올라가
+        {
+            float x = curDirection.x;
+            float y = -1;
+
+            curDirection = new Vector2(x, y);
+        }
+        else  //옆면
+        {
+            float x = -curDirection.x;
+            float y = -1;
+
+            curDirection = new Vector2(x, y);
+        }
+        
 
         ChargeDash();
         rigid.gravityScale = 1f;

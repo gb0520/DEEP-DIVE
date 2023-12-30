@@ -12327,6 +12327,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6365842248918198821, guid: 170dced143045f547bd16d32e6aef3bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6365842248918198823, guid: 170dced143045f547bd16d32e6aef3bd, type: 3}
       propertyPath: m_Name
       value: PlayerBody
