@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text gameOverText;
     [SerializeField] string[] gameOverString;
     [SerializeField] GameObject restartBtn;
-    
+    [SerializeField] ZB.UsingTweening.Guage.TweeningGuage hpGuage;
   
 
     private float fadeTime = 3f;
@@ -128,7 +128,10 @@ public class UIManager : MonoBehaviour
             hpImg[i].enabled = true;
         }
     }
-
+    public void SetGuage(float ratio)
+    {
+        hpGuage.Change(ratio);
+    }
 
     public void GameOver()
     {
