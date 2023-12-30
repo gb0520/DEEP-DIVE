@@ -1852,6 +1852,7 @@ MonoBehaviour:
   - Game Over
   - Game Over
   restartBtn: {fileID: 968646862}
+  hpGuage: {fileID: 0}
 --- !u!114 &462294355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,6 +2561,7 @@ MonoBehaviour:
   gameOverText: {fileID: 0}
   gameOverString: []
   restartBtn: {fileID: 0}
+  hpGuage: {fileID: 0}
 --- !u!1 &633470469
 GameObject:
   m_ObjectHideFlags: 0
@@ -8860,6 +8862,8 @@ MonoBehaviour:
   stage: 0
   score: 0
   isGameOver: 0
+  maxTime: 0
+  curTime: 0
 --- !u!1 &1061404811
 GameObject:
   m_ObjectHideFlags: 0
