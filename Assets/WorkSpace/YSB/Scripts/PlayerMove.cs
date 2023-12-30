@@ -123,6 +123,7 @@ public class PlayerMove : MonoBehaviour
                 moveSpeed = maxSpeed;
             }
         }
+        if (rigid.velocity.y > 0) return;
         rigid.velocity = curDirection * moveSpeed;
     }
 
