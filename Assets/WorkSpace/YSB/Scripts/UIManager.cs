@@ -72,6 +72,7 @@ public class UIManager : MonoBehaviour
 
     public void GamePause()
     {
+        if(GameManager.instance.isGameOver == true) { return; }
         bool isOpen = !panel_Pause.activeSelf;
         panel_Pause.SetActive(isOpen);
         if (isOpen == true)
