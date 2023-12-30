@@ -160,5 +160,6 @@ public class UIManager : MonoBehaviour
         // 시작한다는 함수 추가?
         Debug.Log("Pressed Start Btn");
         titleView.SetActive(false);
+        GameManager.instance.gameStart = true;
     }
 }

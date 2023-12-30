@@ -56,6 +56,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+        if(GameManager.instance.gameStart == false) { return; }
         if (Input.GetKeyDown(leftKey))
         {
             StartDash(left);
