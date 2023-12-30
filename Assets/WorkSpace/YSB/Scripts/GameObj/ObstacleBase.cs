@@ -22,6 +22,7 @@ public class ObstacleBase : ObjBase
         time = 1.5f;
 
         initScale = transform.localScale;
+        transform.localScale = initScale;
     }
 
     private void OnEnable()
