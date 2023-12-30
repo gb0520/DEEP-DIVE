@@ -147,9 +147,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1690857250454674549, guid: 1c33a0f4f98d9c84cbdd20f304f7a4eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.48
+      objectReference: {fileID: 0}
     - target: {fileID: 2938469109766907471, guid: 1c33a0f4f98d9c84cbdd20f304f7a4eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.54
+      value: -0.92
       objectReference: {fileID: 0}
     - target: {fileID: 3845815926913557164, guid: 1c33a0f4f98d9c84cbdd20f304f7a4eb, type: 3}
       propertyPath: obstacles.Array.size
