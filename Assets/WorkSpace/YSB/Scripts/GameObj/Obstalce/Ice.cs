@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ice : MonoBehaviour
+public class Ice : ObstacleBase
 {
     Rigidbody2D rigid;
     [SerializeField]
@@ -29,5 +29,15 @@ public class Ice : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    protected override void CrashObj()
+    {
+        if (target == null) { return; }
+        GameManager.instance.MinusTime(damage);
+        target.fall();
+        gameObject.SetActive(false);
+        //target.TakeDamage(damage);
+        //target.SetJumpForce();
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 276309793650014095}
   - component: {fileID: 6644697029015160017}
   - component: {fileID: -7085789067736717180}
+  - component: {fileID: -1158063739601486244}
   m_Layer: 0
   m_Name: Timer_Big
   m_TagString: Untagged
@@ -96,3 +97,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heal: 5
+--- !u!58 &-1158063739601486244
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300426825450921300}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
