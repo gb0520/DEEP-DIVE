@@ -101,7 +101,10 @@ MonoBehaviour:
   damage: 20
   endSize: {x: 0, y: 0}
   time: 0
+  initScale: {x: 0, y: 0, z: 0}
   moveSpeed: 20
+  delay: 0
+  limitY: 0
 --- !u!50 &3652271102386352518
 Rigidbody2D:
   serializedVersion: 4
