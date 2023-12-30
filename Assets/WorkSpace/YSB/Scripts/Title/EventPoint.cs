@@ -7,5 +7,6 @@ public class EventPoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.SendMessage("PickUp");
+        gameObject.SetActive(false);
     }
 }

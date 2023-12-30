@@ -27,8 +27,16 @@ public class TitleManager : MonoBehaviour
     [Header("Start")]
     [SerializeField] GameObject fadeObj;
     [SerializeField] float startTime;
-    
-    
+
+
+    private TitlePlayer target;
+    [SerializeField]
+    private Transform monster;
+
+    [SerializeField]
+    private float downSpeed = 10f;
+    [SerializeField]
+    private float maxSpeed = 2f;
     void Init()
     {
         if(!titleView)
@@ -51,6 +59,8 @@ public class TitleManager : MonoBehaviour
     {
         Init();
         SetTitleFade(0.3f);
+
+        target = FindObjectOfType<TitlePlayer>();
     }
 
     void SetTitleFade(float value)
@@ -82,13 +92,23 @@ public class TitleManager : MonoBehaviour
     {
         // 시작한다는 함수 추가?
         Debug.Log("Pressed Start Btn");
+        titleView.SetActive(false);
+        target.JumpMove();
         // titleView.SetActive(false);
         // GameManager.instance.gameStart = true;
-        fadeObj.SetActive(true);
-        Image fadeImage = fadeObj.GetComponent<Image>();
-        fadeImage.DOFade(1, startTime / 2).OnComplete(() => fadeImage.DOFade(1, startTime / 2).OnComplete(() => MoveScene()));
+        //fadeObj.SetActive(true);
+        //Image fadeImage = fadeObj.GetComponent<Image>();
+        //fadeImage.DOFade(1, startTime / 2).OnComplete(() => fadeImage.DOFade(1, startTime / 2).OnComplete(() => MoveScene()));
     }
 
+    public void MobAppear()
+    {
+        monster.DOLocalMoveY(0, downSpeed).OnComplete(()=>target.Dive());
+    }
+    public void MobDown()
+    {
+        monster.DOLocalMoveY(-15f, maxSpeed).OnComplete(MoveScene);
+    }
     void MoveScene()
     {
         // 씬 이동하는 값 추가

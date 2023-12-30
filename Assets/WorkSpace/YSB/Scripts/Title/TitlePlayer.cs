@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TitlePlayer : MonoBehaviour
 {
+    private TitleManager manager_Title;
     public Transform point;
     Rigidbody2D rigid;
     Animator anim;
@@ -15,8 +16,11 @@ public class TitlePlayer : MonoBehaviour
     public float limitY = -5f;
 
     public float JumpForce;
+
+    private bool isDash = true;
     private void Awake()
     {
+        manager_Title = FindObjectOfType<TitleManager>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -30,11 +34,17 @@ public class TitlePlayer : MonoBehaviour
         if(rigid.velocity.y < 0f)
         {
             anim.SetBool("isJump", false);
+            if(isDash == false)
+            {
+                rigid.velocity = new Vector2(-1, -1).normalized * 12f;
+                isDash = true;
+            }
         }
 
         if(transform.position.y <= limitY)
         {
             //ÆäÀÌµå ¾Æ¿ô
+            manager_Title.MobDown();
         }
     }
 
@@ -60,7 +70,9 @@ public class TitlePlayer : MonoBehaviour
 
     public void Dive()
     {
-        JumpForce = 5f;
+        isDash = false;
+        anim.SetBool("PickUp", false);
+        JumpForce = 6f;
         Jump();
     }
 
@@ -69,19 +81,30 @@ public class TitlePlayer : MonoBehaviour
         createTime = Time.time;
         while(true)
         {
-            if (Time.time - 1.5f > createTime)
+            if (Time.time - 1f > createTime)
             {
-                if (eCount > enemies.Length - 1)
-                {
-                    anim.SetBool("PickUp", false);
-                    Dive();
-                    yield break;
-                }
-                createTime = Time.time;
-                enemies[eCount].SetActive(true);
-                eCount++;
+                manager_Title.MobAppear();
+                yield break;
+                //if (eCount > enemies.Length - 1)
+                //{
+                //    anim.SetBool("PickUp", false);
+                //    Dive();
+                //    yield break;
+                //}
+                //createTime = Time.time;
+                //enemies[eCount].SetActive(true);
+                //eCount++;
             }
             yield return null;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 6)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            rigid.velocity = new Vector2(1, -1).normalized * 10f;
         }
     }
 }
