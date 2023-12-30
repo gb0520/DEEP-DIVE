@@ -12,18 +12,29 @@ public class TitlePlayer : MonoBehaviour
     public int eCount = 0;
     public float createTime = 0;
 
+    public float limitY = -5f;
+
     public float JumpForce;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
-
+    private void Start()
+    {
+        Invoke("JumpMove", 1f);
+    }
     private void Update()
     {
+        
         if(rigid.velocity.y < 0f)
         {
             anim.SetBool("isJump", false);
+        }
+
+        if(transform.position.y <= limitY)
+        {
+            //ÆäÀÌµå ¾Æ¿ô
         }
     }
 
