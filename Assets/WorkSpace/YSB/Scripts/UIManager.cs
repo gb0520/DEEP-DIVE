@@ -92,17 +92,18 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = GameManager.instance.score.ToString("F2") + "M";
     }
-    public void ShowMeter(float meter)
+    public void ShowMeter(int stage)
     {
-        if(meter <= 0)
-        {
-            meterText.color = new Color(1, 1, 1, 1);
-            meterText.gameObject.SetActive(false);
-            return;
-        }
+        // if(stage <= 0)
+        // {
+        //     meterText.color = new Color(1, 1, 1, 1);
+        //     meterText.gameObject.SetActive(false);
+        //     return;
+        // }
+        
+        meterText.color = new Color(1, 1, 1, 1);
         meterText.gameObject.SetActive(true);
-        int m = (int)(meter / 100) * 100;
-        meterText.text = m.ToString("F0") + "M\n돌파";
+        meterText.text = (stage + 1).ToString() + " 스테이지" + "\n돌파";
 
         DOTmp(meterText, 2f);
 

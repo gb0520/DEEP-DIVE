@@ -1835,7 +1835,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 300}
+  m_SizeDelta: {x: 750, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &548608379
 MonoBehaviour:
@@ -1857,7 +1857,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "500M\n\uB3CC\uD30C"
+  m_text: "1 \uC2A4\uD14C\uC774\uC9C0\n\uB3CC\uD30C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01b9e3daa7266c34e910c7ea31352d0a, type: 2}
   m_sharedMaterial: {fileID: -9193250239623874993, guid: 01b9e3daa7266c34e910c7ea31352d0a, type: 2}

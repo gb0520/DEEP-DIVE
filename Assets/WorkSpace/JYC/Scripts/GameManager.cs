@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
             isClearStage = true;
             fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime).OnComplete(() => 
             {
-                UIManager.instance.ShowMeter(score);
+                UIManager.instance.ShowMeter(stage);
                 ClearStage();
             });
             
