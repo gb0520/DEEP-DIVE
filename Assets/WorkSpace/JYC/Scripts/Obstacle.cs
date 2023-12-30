@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour
         transform.position = spawnPos;
 
         // GameObject[] objs = GetComponentsInChildren<GameObject>()
-        
+        Init();
 
     }
 
