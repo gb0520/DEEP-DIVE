@@ -22,12 +22,16 @@ public class PlayerDashEft : MonoBehaviour
     [ContextMenu("Play_Use")]
     public void Play_Use()
     {
-        particle_Charge.Play();
-        particle_Charge.transform.DOLocalMove(Vector2.zero, 0.25f).OnComplete(() => particle_Charge.Stop());
+        particle_Use.transform.DOKill();
+
+        particle_Use.Play();
+        particle_Use.transform.DOLocalMove(Vector2.zero, 0.5f).OnComplete(() => particle_Use.Stop());
     }
     [ContextMenu("Stop_Use")]
     public void Stop_Use()
     {
-        particle_Charge.Stop();
+        particle_Use.transform.DOKill();
+
+        particle_Use.Stop();
     }
 }

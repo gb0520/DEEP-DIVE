@@ -6873,7 +6873,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -11598,6 +11598,7 @@ MonoBehaviour:
     - {fileID: 4504569208660257775, guid: effef878cd6be944cbec779259837c7b, type: 3}
     - {fileID: 4504569208660257775, guid: 15fa66d17022dca4c9c6ab12b245ad41, type: 3}
     - {fileID: 4504569208660257775, guid: fb1df90c0e2019e4890af47956adbcbd, type: 3}
+    - {fileID: 4504569208660257775, guid: 0801410a17132f146883dc5e833e163b, type: 3}
   - obstaclePrefabs:
     - {fileID: 4504569208660257775, guid: 976446833aaf6bb47a01b9d22a3dca62, type: 3}
   - obstaclePrefabs:
@@ -12326,6 +12327,10 @@ PrefabInstance:
     - target: {fileID: 6365842248918198818, guid: 170dced143045f547bd16d32e6aef3bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365842248918198821, guid: 170dced143045f547bd16d32e6aef3bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6365842248918198823, guid: 170dced143045f547bd16d32e6aef3bd, type: 3}
       propertyPath: m_Name
