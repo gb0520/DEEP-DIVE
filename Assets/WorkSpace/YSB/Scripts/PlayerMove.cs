@@ -41,6 +41,7 @@ public class PlayerMove : MonoBehaviour
     private bool isLoading = false;
     private float jumpForce;
 
+    public bool IsDashing => isDashing;
 
     [SerializeField]
     private float bombSize;
@@ -233,6 +234,7 @@ public class PlayerMove : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         hp = hp - dmg < 0 ? 0 : hp - dmg;
+        NoDamage();
         anim.SetTrigger("isHit");
         EffectManager.instance.DrawEffect();
         UIManager.instance.SetHp(hp);
@@ -261,15 +263,15 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    //public void NoDamage()
-    //{
-    //    gameObject.layer = 9;
-    //    Invoke("OnDamage", 1f);
-    //}
-    //public void OnDamage()
-    //{
-    //    gameObject.layer = 0;
-    //}
+    public void NoDamage()
+    {
+        transform.GetChild(0).gameObject.layer = 9;
+        Invoke("OnDamage", 0.4f);
+    }
+    public void OnDamage()
+    {
+        transform.GetChild(0).gameObject.layer = 0;
+    }
 
     public void Save()
     {

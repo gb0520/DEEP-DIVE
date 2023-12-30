@@ -22,7 +22,7 @@ public class TitlePlayer : MonoBehaviour
     }
     private void Start()
     {
-        Invoke("JumpMove", 1f);
+        //Invoke("JumpMove", 1f);
     }
     private void Update()
     {
