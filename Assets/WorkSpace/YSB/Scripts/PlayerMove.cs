@@ -39,6 +39,7 @@ public class PlayerMove : MonoBehaviour
 
     private bool isCrashing = false;
     private bool isLoading = false;
+    private bool isHit = false;
     private float jumpForce;
 
     public bool IsDashing => isDashing;
@@ -58,6 +59,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+        if (GameManager.instance.isGameOver == true) { return; }
         if (Input.GetKeyDown(leftKey))
         {
             StartDash(left);
@@ -260,8 +262,11 @@ public class PlayerMove : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        if(isHit == true) { return; }
         hp = hp - dmg < 0 ? 0 : hp - dmg;
-        NoDamage();
+        Invoke("NoDamage", 0.4f);
+        //NoDamage();
+        isHit = true;
         anim.SetTrigger("isHit");
         EffectManager.instance.DrawEffect();
         UIManager.instance.SetHp(hp);
@@ -292,6 +297,7 @@ public class PlayerMove : MonoBehaviour
 
     public void NoDamage()
     {
+        isHit = false;
         transform.GetChild(0).gameObject.layer = 9;
         Invoke("OnDamage", 0.4f);
     }
