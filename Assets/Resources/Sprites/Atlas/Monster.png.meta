@@ -1,34 +1,43 @@
 fileFormatVersion: 2
-guid: e63fb3f4d8301744b956779b19f55697
+guid: 7863093c77033764e929290b02671a59
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5878403006499690433
-    second: PlayerAllAni_0
+      213: -7482177786666212508
+    second: Monster_0
   - first:
-      213: -7241109170591408358
-    second: PlayerAllAni_1
+      213: -7783437513647718680
+    second: Monster_1
   - first:
-      213: -3718688489570327037
-    second: PlayerAllAni_2
+      213: -724056971925584315
+    second: Monster_2
   - first:
-      213: 6108629526056608318
-    second: PlayerAllAni_3
+      213: -233947400402218603
+    second: Monster_3
   - first:
-      213: -1481573754722909233
-    second: PlayerAllAni_4
+      213: 5538744878310211288
+    second: Monster_4
   - first:
-      213: 653238130863050782
-    second: PlayerAllAni_5
+      213: -2789685161255136304
+    second: Monster_5
   - first:
-      213: 2952559399315062515
-    second: PlayerAllAni_6
+      213: 5591917615992662062
+    second: Monster_6
   - first:
-      213: -5787898361898869458
-    second: PlayerAllAni_7
+      213: 3718482036254201638
+    second: Monster_7
   - first:
-      213: 8643591278028462236
-    second: PlayerAllAni_8
+      213: -7401181443320029541
+    second: Monster_8
+  - first:
+      213: 6795491404945703300
+    second: Monster_9
+  - first:
+      213: 181794740684988222
+    second: Monster_10
+  - first:
+      213: -2541074946905779272
+    second: Monster_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -130,190 +139,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerAllAni_0
+      name: Monster_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        y: 192
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f386ff65c97bb6ea0800000000000000
-      internalID: -5878403006499690433
+      spriteID: 463217ff1f6f92890800000000000000
+      internalID: -7482177786666212508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAllAni_1
+      name: Monster_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        x: 160
+        y: 192
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1f531b0399628b90800000000000000
-      internalID: -7241109170591408358
+      spriteID: 8eef39bd1dcabf390800000000000000
+      internalID: -7783437513647718680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAllAni_2
+      name: Monster_2
       rect:
         serializedVersion: 2
-        x: 96
-        y: 48
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        x: 320
+        y: 192
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 306a3dc6580946cc0800000000000000
-      internalID: -3718688489570327037
+      spriteID: 5460b3f2502a3f5f0800000000000000
+      internalID: -724056971925584315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAllAni_3
+      name: Monster_3
       rect:
         serializedVersion: 2
-        x: 144
-        y: 48
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        x: 480
+        y: 192
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e322115603636c450800000000000000
-      internalID: 6108629526056608318
+      spriteID: 59156ee241ad0ccf0800000000000000
+      internalID: -233947400402218603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAllAni_4
+      name: Monster_4
       rect:
         serializedVersion: 2
-        x: 192
-        y: 48
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        x: 0
+        y: 96
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc303311584607be0800000000000000
-      internalID: -1481573754722909233
+      spriteID: 8deb13d0f139ddc40800000000000000
+      internalID: 5538744878310211288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAllAni_5
+      name: Monster_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d39530502c0949d0800000000000000
+      internalID: -2789685161255136304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_6
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e28ed7ac17b7a9d40800000000000000
+      internalID: 5591917615992662062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_7
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 96
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6275a9ae5b3ba9330800000000000000
+      internalID: 3718482036254201638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1015d77e94c01900800000000000000
-      internalID: 653238130863050782
+      spriteID: b9e52b0c0b8b94990800000000000000
+      internalID: -7401181443320029541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAllAni_6
+      name: Monster_9
       rect:
         serializedVersion: 2
-        x: 48
+        x: 160
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fe3a6e512999f820800000000000000
-      internalID: 2952559399315062515
+      spriteID: 4814202cd6f6e4e50800000000000000
+      internalID: 6795491404945703300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAllAni_7
+      name: Monster_10
       rect:
         serializedVersion: 2
-        x: 96
+        x: 320
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2dd3fefa114dafa0800000000000000
-      internalID: -5787898361898869458
+      spriteID: e3f109c7a5dd58200800000000000000
+      internalID: 181794740684988222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerAllAni_8
+      name: Monster_11
       rect:
         serializedVersion: 2
-        x: 144
+        x: 480
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.3333333, y: 0.08333334}
+        width: 160
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c981d8eb87434f770800000000000000
-      internalID: 8643591278028462236
+      spriteID: 8b3590a8cc94cbcd0800000000000000
+      internalID: -2541074946905779272
       vertices: []
       indices: 
       edges: []
