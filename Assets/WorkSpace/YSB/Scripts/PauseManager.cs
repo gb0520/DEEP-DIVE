@@ -6,6 +6,9 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager instance;
     public float stopTime;
+    bool isPaused = false;
+
+    public bool IsPaused { set { isPaused = value; } }
 
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class PauseManager : MonoBehaviour
     }
     public void MoveTime()
     {
+        if(isPaused == true) { return; }
         Time.timeScale = 1;
     }
 }

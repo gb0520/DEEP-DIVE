@@ -57,11 +57,15 @@ public class UIManager : MonoBehaviour
         panel_Pause.SetActive(isOpen);
         if (isOpen == true)
         {
+            PauseManager.instance.IsPaused = true;
             PauseManager.instance.StopTime();
+
         }
         else
         {
+            PauseManager.instance.IsPaused = false;
             PauseManager.instance.MoveTime();
+
         }
     }
     public void SetScore(float score)
