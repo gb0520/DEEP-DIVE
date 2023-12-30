@@ -153,7 +153,7 @@ public class PlayerMove : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime;
-            if (timer >= 10f)
+            if (timer >= 2f)
             {
                 timer -= 2f;
                 if(dashCount < 2)
@@ -300,7 +300,7 @@ public class PlayerMove : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        if(isHit == true) { return; }
+        if (isHit == true || GameManager.instance.isGameOver) { return; }
         hp = hp - dmg < 0 ? 0 : hp - dmg;
         Invoke("NoDamage", 0.4f);
         //NoDamage();

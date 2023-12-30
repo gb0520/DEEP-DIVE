@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     void setScore()
     {
-        if(isClearStage) return;
+        if(isClearStage || isGameOver) return;
 
         if (yPos > player.YPos) yPos = player.YPos;
         score = Mathf.Abs(yPos) - Mathf.Abs(fadeOutFix);
@@ -149,6 +149,6 @@ public class GameManager : MonoBehaviour
 
     public void GameRestart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MainScene");
     }
 }

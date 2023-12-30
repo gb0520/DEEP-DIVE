@@ -112,5 +112,6 @@ public class TitleManager : MonoBehaviour
     void MoveScene()
     {
         // 씬 이동하는 값 추가
+        SceneManager.LoadScene("MainScene");
     }
 }

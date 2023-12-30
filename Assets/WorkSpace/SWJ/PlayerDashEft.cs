@@ -25,7 +25,7 @@ public class PlayerDashEft : MonoBehaviour
         particle_Use.transform.DOKill();
 
         particle_Use.Play();
-        particle_Use.transform.DOLocalMove(Vector2.zero, 0.5f).OnComplete(() => particle_Use.Stop());
+        particle_Use.transform.DOLocalMove(Vector2.zero, 0.1f).OnComplete(() => particle_Use.Stop());
     }
     [ContextMenu("Stop_Use")]
     public void Stop_Use()
