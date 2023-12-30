@@ -9,6 +9,8 @@ public class TitlePlayer : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
 
+    public GameObject hell;
+
     public GameObject[] enemies;
     public int eCount = 0;
     public float createTime = 0;
@@ -70,6 +72,7 @@ public class TitlePlayer : MonoBehaviour
 
     public void Dive()
     {
+        hell.SetActive(false);
         isDash = false;
         anim.SetBool("PickUp", false);
         JumpForce = 6f;
@@ -84,6 +87,8 @@ public class TitlePlayer : MonoBehaviour
             if (Time.time - 1f > createTime)
             {
                 manager_Title.MobAppear();
+                hell.SetActive(true);
+                hell.transform.position = transform.position + new Vector3(0, 1.2f);
                 yield break;
                 //if (eCount > enemies.Length - 1)
                 //{
