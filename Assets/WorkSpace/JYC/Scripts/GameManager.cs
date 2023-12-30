@@ -58,6 +58,12 @@ public class GameManager : MonoBehaviour
     {
         setScore();
 
+        if(stage == 2) 
+        {
+            return;
+        }
+
+
         if(isClearStage) return;
 
         // if (targetY < cameraTrans.position.y - 2 * screenY) return;
@@ -130,6 +136,8 @@ public class GameManager : MonoBehaviour
         isOverY = false;
         player.SetDirection(isClearStage);  //플레이어 낙하 방향 조정
     }
+
+
 
     public void GameOver()
     {

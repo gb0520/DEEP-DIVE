@@ -26,7 +26,12 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (!instance)
+            instance = this;
+        else
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
         Init();
         PlayBgm(true);
     }
@@ -45,10 +50,12 @@ public class SoundManager : MonoBehaviour
         // 효과음 오브젝트 생성 및 초기화
         GameObject sfxObject = new GameObject("SFX Player");
         sfxObject.transform.parent = transform;
+        
         sfxPlayers = new AudioSource[channels];
 
         for (int index = 0; index < sfxPlayers.Length; index++)
         {
+            
             sfxPlayers[index] = sfxObject.AddComponent<AudioSource>();
             sfxPlayers[index].playOnAwake = false;
             // sfxPlayers[index].bypassListenerEffects = true;

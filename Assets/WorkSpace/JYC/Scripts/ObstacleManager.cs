@@ -53,7 +53,7 @@ public class ObstacleManager : MonoBehaviour
 
     void SpawnObstacle()
     {
-        if (GameManager.instance.isOverY) return;
+        if (GameManager.instance.isOverY && GameManager.instance.stage < 2) return;
 
         // 장애물 소환하고, 그 다음 소환 위치 지정하기
         // int spawnRandom = Random.Range(0, obstaclePrefabs.Length);

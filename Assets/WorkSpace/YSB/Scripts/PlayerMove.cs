@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
     private KeyCode leftKey = KeyCode.A;
     private KeyCode rightKey = KeyCode.D;
 
-    private Vector3 preDirection;   //ÀÌÀü ¹æÇâ > ±â¾ï¿ë
+    private Vector3 preDirection;   //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ > ï¿½ï¿½ï¿½ï¿½
     private Vector3 curDirection;
     private Vector3 left = new Vector3(-1, -1, 0).normalized;
     private Vector3 right = new Vector3(1, -1, 0).normalized;
@@ -133,6 +133,7 @@ public class PlayerMove : MonoBehaviour
 
         playerDashEft.Stop_Charge();
         playerDashEft.Play_Use();
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.dash);
     }
 
     private IEnumerator Dash()
@@ -151,7 +152,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     //----------------------------------------------Crash
-    public void SetDirection(float x)  //x°ªÀ¸·Î Á¶Àý
+    public void SetDirection(float x)  //xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         anim.SetBool("isJump", false);
         if (x < 0)
@@ -163,7 +164,7 @@ public class PlayerMove : MonoBehaviour
             curDirection = right;
         }
     }
-    public void SetDirection(bool loading)  //ÀüÃ¼ Á¶Á¤
+    public void SetDirection(bool loading)  //ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
     {
         isLoading = loading;
         if(isLoading == true)
@@ -227,7 +228,7 @@ public class PlayerMove : MonoBehaviour
     public void ReflectFloor(Vector3 refdir)
     {
         //isCrashing = true;
-        //anim.SetBool("isJump", true);   //¾Ö´Ï
+        //anim.SetBool("isJump", true);   //ï¿½Ö´ï¿½
         
         //rigid.velocity = Vector2.zero;
         ////Vector3 dir = Vector3.Reflect(curDirection, refdir);
@@ -240,17 +241,17 @@ public class PlayerMove : MonoBehaviour
         ////}
         //float x;
         //float y;
-        //if (refdir.y < -0.5f)    //À§·Î Æ¨°ÜÁ®
+        //if (refdir.y < -0.5f)    //ï¿½ï¿½ï¿½ï¿½ Æ¨ï¿½ï¿½ï¿½ï¿½
         //{
         //    x = curDirection.x < 0 ? -1 : 1;
         //    y = 1;
         //}
-        //else if(refdir.y > 0.5f)//¾Æ·¡·Î Æ¨°Ü
+        //else if(refdir.y > 0.5f)//ï¿½Æ·ï¿½ï¿½ï¿½ Æ¨ï¿½ï¿½
         //{
         //    x = curDirection.x;
         //    y = -1;
         //}
-        //else  //¿·¸é
+        //else  //ï¿½ï¿½ï¿½ï¿½
         //{
         //    x = -curDirection.x;
         //    y = -1;
