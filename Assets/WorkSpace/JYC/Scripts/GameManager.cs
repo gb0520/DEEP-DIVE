@@ -146,12 +146,17 @@ public class GameManager : MonoBehaviour
     {
         SaveManager.instance.Save((int)score);
         isGameOver = true;
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     public void GameRestart()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void GoMain()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
     }
 
     public void TakeTime(float time)
@@ -172,6 +177,7 @@ public class GameManager : MonoBehaviour
         if (curTime <= 0)
         {
             isGameOver = true;
+            GameOver();
         }
     }
 }

@@ -108,6 +108,15 @@ public class PlayerMove : MonoBehaviour
 
     //----------------------------------------------Move
 
+    public void OnInputLeft()
+    {
+        StartDash(left);
+    }
+    public void OnInputRight()
+    {
+        StartDash(right);
+    }
+
     public void Accel()
     {
         maxSpeed *= 1.25f;
