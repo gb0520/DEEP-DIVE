@@ -7,6 +7,7 @@ public class Obstacle : MonoBehaviour
     public Transform highest;
     public Transform lowest;
     public GameObject[] obstacles;
+    // List<GameObject>[] obstacles;
     public int index;
 
     public void Spawn(Vector3 pos)
@@ -15,6 +16,10 @@ public class Obstacle : MonoBehaviour
         // 전달 받는 pos는 highest의 위치를 의미함
         Vector3 spawnPos = pos - new Vector3(0, highest.localPosition.y, 0) * transform.localScale.y;
         transform.position = spawnPos;
+
+        // GameObject[] objs = GetComponentsInChildren<GameObject>()
+        
+
     }
 
 
