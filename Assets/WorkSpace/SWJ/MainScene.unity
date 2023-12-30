@@ -11599,6 +11599,7 @@ MonoBehaviour:
     - {fileID: 4504569208660257775, guid: 15fa66d17022dca4c9c6ab12b245ad41, type: 3}
     - {fileID: 4504569208660257775, guid: fb1df90c0e2019e4890af47956adbcbd, type: 3}
     - {fileID: 4504569208660257775, guid: 0801410a17132f146883dc5e833e163b, type: 3}
+    - {fileID: 4504569208660257775, guid: 91de7aa172026ce418f5d5842de105f2, type: 3}
   - obstaclePrefabs:
     - {fileID: 4504569208660257775, guid: 976446833aaf6bb47a01b9d22a3dca62, type: 3}
   - obstaclePrefabs:
@@ -12840,6 +12841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1378697833}
   monster: {fileID: 421792651}
+  monsterParent: {fileID: 0}
   monsterInsideTime: 2
 --- !u!81 &931194234
 AudioListener:
