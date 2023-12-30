@@ -70,8 +70,12 @@ public class GameManager : MonoBehaviour
         if(!isClearStage)
         {
             isClearStage = true;
-            fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime).OnComplete(() => UIManager.instance.ShowMeter(score));
-            ClearStage();
+            fadeObj.GetComponent<SpriteRenderer>().DOFade(1, fadeTime).OnComplete(() => 
+            {
+                UIManager.instance.ShowMeter(score);
+                ClearStage();
+            });
+            
             startY = player.YPos;
             
             player.SetDirection(isClearStage);  //플레이어 낙하 방향 조정
