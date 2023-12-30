@@ -6,7 +6,7 @@ public class Spike : ObstacleBase
 {
     private void OnEnable()
     {
-        transform.localScale = new Vector3(1, 1, 1);
+        //transform.localScale = new Vector3(1, 1, 1);
     }
     protected override void CrashObj()
     {
