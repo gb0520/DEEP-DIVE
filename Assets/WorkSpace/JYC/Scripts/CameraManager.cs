@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Timeline;
 using UnityEngine;
 using DG.Tweening;
+using UnityEditor;
 
 public class CameraManager : MonoBehaviour
 {
@@ -14,18 +15,34 @@ public class CameraManager : MonoBehaviour
 
     bool isComing;
     bool isOutComing;
+    bool isOver;
 
     void Awake()
     {
         if(!monster)
             monster = GameObject.Find("Monster_0").GetComponent<Transform>();
+        
+        isOver = false;
     }
     
     void Update()
     {
-        
-        Move();
-        
+        if(!GameManager.instance.isGameOver)
+            Move();
+        else
+        {
+            if(!isOver)
+            {
+                isOver = true;
+                DeadMotion();
+            }            
+        }
+    }
+
+
+    public void DeadMotion()
+    {
+        monsterParent.DOLocalMoveY(-10f, 2f).OnComplete(() => UIManager.instance.GameOver());
     }
 
     public void Move()

@@ -17,6 +17,15 @@ public class UIManager : MonoBehaviour
     private bool isOpen;
     public Image[] hpImg;
 
+    [SerializeField] GameObject overPanel;
+    [SerializeField] TMP_Text bestScoreText;
+    [SerializeField] TMP_Text recentScoreText;
+    [SerializeField] TMP_Text gameOverText;
+    [SerializeField] string[] gameOverString;
+    [SerializeField] GameObject restartBtn;
+    
+  
+
     private float fadeTime = 3f;
 
     private void Awake()
@@ -29,7 +38,7 @@ public class UIManager : MonoBehaviour
         scoreText = transform.Find("Text_Score").GetComponent<TMP_Text>();      
         meterText = transform.Find("Text_Meter").GetComponent<TMP_Text>();      
         
-
+        Init();
         // titleView.SetActive(true);
     }
     private void Update()
@@ -42,6 +51,23 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void Init()
+    {   
+        if(!overPanel)
+            overPanel = GameObject.Find("GameOver Panel");
+
+        if(!bestScoreText)
+            bestScoreText = GameObject.Find("HighestScore Text").GetComponent<TMP_Text>();
+            
+        if(!recentScoreText)
+            recentScoreText = GameObject.Find("RecentScore Text").GetComponent<TMP_Text>();
+
+        if(!gameOverText)
+            gameOverText = GameObject.Find("GameOver Text").GetComponent<TMP_Text>();
+            
+        if(!restartBtn)
+            restartBtn = GameObject.Find("Restart Btn");
+    }
 
 
     public void GamePause()
@@ -103,8 +129,36 @@ public class UIManager : MonoBehaviour
     }
 
 
+    public void GameOver()
+    {
+        overPanel.SetActive(true);
+        gameOverText.text = "";
+        bestScoreText.text = "";
+        recentScoreText.text = "";
+        overPanel.GetComponent<Image>().DOFade(1, 2f).OnComplete(() => GameOverUI());
+    }
     
-    
+    public void GameOverUI()
+    {
+        
+        gameOverText.maxVisibleCharacters = 0;
+        gameOverText.text = gameOverString[Random.Range(0, gameOverString.Length)];
+        DOTween.To(x => gameOverText.maxVisibleCharacters = (int)x, 0f, gameOverText.text.Length, 2f).OnComplete(() => 
+        {
+            bestScoreText.maxVisibleCharacters = 0;
+            string bestScore = "최고 점수 : " + SaveManager.instance.highestScore.ToString() + "M";
+            bestScoreText.text = bestScore;
+            DOTween.To(x => bestScoreText.maxVisibleCharacters = (int)x, 0f, bestScoreText.text.Length, 1f).OnComplete(()=>
+            { 
+                recentScoreText.maxVisibleCharacters = 0;
+                string recentScore = "최근 점수 : " + ((int)GameManager.instance.score).ToString() + "M";
+                recentScoreText.text = recentScore;
+                DOTween.To(x => recentScoreText.maxVisibleCharacters = (int)x, 0f, recentScoreText.text.Length, 1f).OnComplete(() => restartBtn.SetActive(true));
+            });
+        });
+        
+        
+    }
 
     
 

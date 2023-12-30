@@ -5164,6 +5164,13 @@ MonoBehaviour:
   - {fileID: 1837506465}
   - {fileID: 192654737}
   - {fileID: 858736675}
+  overPanel: {fileID: 0}
+  bestScoreText: {fileID: 0}
+  recentScoreText: {fileID: 0}
+  gameOverText: {fileID: 0}
+  gameOverString:
+  - 
+  restartBtn: {fileID: 0}
 --- !u!114 &60545378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11802,6 +11809,12 @@ MonoBehaviour:
   - {fileID: 1456419654}
   - {fileID: 640590782}
   - {fileID: 652793499}
+  overPanel: {fileID: 0}
+  bestScoreText: {fileID: 0}
+  recentScoreText: {fileID: 0}
+  gameOverText: {fileID: 0}
+  gameOverString: []
+  restartBtn: {fileID: 0}
 --- !u!1 &633470469
 GameObject:
   m_ObjectHideFlags: 0
@@ -13124,6 +13137,7 @@ MonoBehaviour:
   isClearStage: 0
   stage: 0
   score: 0
+  isGameOver: 0
 --- !u!1 &1062696779
 GameObject:
   m_ObjectHideFlags: 0

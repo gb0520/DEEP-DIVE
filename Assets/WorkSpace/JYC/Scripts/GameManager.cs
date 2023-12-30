@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.SocialPlatforms.Impl;
 using System;
@@ -37,8 +38,12 @@ public class GameManager : MonoBehaviour
     public float score;
     private float screenY => Camera.main.orthographicSize * 2;
 
+
+    public bool isGameOver;
+
     void Awake()
     {
+        isGameOver = false;
         if(!instance)
             instance = this;
 
@@ -129,6 +134,13 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         SaveManager.instance.Save((int)score);
+        isGameOver = true;
         Time.timeScale = 0f;
+    }
+
+
+    public void GameRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
