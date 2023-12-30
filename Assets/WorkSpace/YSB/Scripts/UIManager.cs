@@ -47,8 +47,8 @@ public class UIManager : MonoBehaviour
     }
     public void GamePause()
     {
-        bool isOpen = panel_Pause.activeSelf;
-        panel_Pause.SetActive(!isOpen);
+        bool isOpen = !panel_Pause.activeSelf;
+        panel_Pause.SetActive(isOpen);
         if (isOpen == true)
         {
             PauseManager.instance.StopTime();
