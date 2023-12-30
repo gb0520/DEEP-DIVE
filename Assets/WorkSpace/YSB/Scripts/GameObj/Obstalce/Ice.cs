@@ -18,10 +18,7 @@ public class Ice : ObstacleBase
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-    }
-    private void OnEnable()
-    {
-        limitY = transform.position.y - 20f;
+        limitY = transform.position.y - 20;
     }
     private void Update()
     {
