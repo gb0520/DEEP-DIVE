@@ -8,6 +8,7 @@ public class Floor : ObstacleBase
     {
         target.SetJumpForce();
     }
+
     //private void OnCollisionEnter2D(Collision2D col)
     //{
     //    if (col.gameObject.CompareTag("Player"))

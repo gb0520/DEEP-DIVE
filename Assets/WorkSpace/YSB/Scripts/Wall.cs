@@ -8,9 +8,9 @@ public class Wall : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("벽과 충돌");
+            //Debug.Log("벽과 충돌");
             Vector3 refdir = col.contacts[0].normal;
-            col.gameObject.SendMessage("Reflect", refdir);
+            //col.gameObject.SendMessage("Reflect", refdir);
         }
     }
     
@@ -19,8 +19,8 @@ public class Wall : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             Vector3 refdir = col.contacts[0].normal;
-            col.gameObject.SendMessage("CheckReflect", refdir.x);
-            Debug.Log(refdir.x);
+            //col.gameObject.SendMessage("CheckReflect", refdir.x);
+           // Debug.Log(refdir.x);
         }
     }
 }

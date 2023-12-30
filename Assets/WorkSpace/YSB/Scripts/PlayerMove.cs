@@ -53,6 +53,7 @@ public class PlayerMove : MonoBehaviour
         curDirection = left;
         preDirection = curDirection;
 
+        jumpForce = moveSpeed * 1.5f;
         hp = maxHp;
     }
     private void Update()
@@ -68,19 +69,25 @@ public class PlayerMove : MonoBehaviour
 
         SetRend(curDirection.x);
 
-        if(rigid.velocity.y > 0)
+        if(isCrashing == false && rigid.velocity.y > 0)
         {
-            if(isLoading == true) { return; }
-            curDirection = new Vector3(curDirection.x, -curDirection.y, 0f);
+            if (isLoading == true) { return; }
+            float x = curDirection.x < 0 ? -1 : 1;
+            curDirection = new Vector2(x, -1).normalized;
         }
+        //if(rigid.velocity.y > 0)
+        //{
+        //    if(isLoading == true) { return; }
+        //    curDirection = new Vector3(curDirection.x, -curDirection.y, 0f);
+        //}
 
         if(isCrashing)
         {
-            if (rigid.velocity.y <= 0)
+            if (rigid.velocity.y <= 0.1f)
             {
+                rigid.velocity = Vector3.zero;
                 rigid.gravityScale = 0f;
                 rigid.drag = 0f;
-                rigid.velocity = Vector3.zero;
                 anim.SetBool("isJump", false);
 
                 curDirection = new Vector3(curDirection.x, -curDirection.y, 0f);
@@ -175,7 +182,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (force == 0f)
         {
-            jumpForce = moveSpeed * 2;
+            jumpForce = moveSpeed * 1.5f;
             return;
         }
         jumpForce = force;
@@ -199,57 +206,54 @@ public class PlayerMove : MonoBehaviour
     }
     public void Reflect(Vector3 refdir)
     {
-        isDashing = false;
-        isCrashing = false;
-        rigid.gravityScale = 0f;
-        rigid.drag = 0f;
-        Vector3 dir = Vector3.Reflect(curDirection, refdir);
-        ChargeDash();
-        SetDirection(dir.x);
-        //curDirection = new Vector3(dir.x, -1, 0f).normalized;
+        //isDashing = false;
+        //isCrashing = false;
+        //rigid.gravityScale = 0f;
+        //rigid.drag = 0f;
+        //Vector3 dir = Vector3.Reflect(curDirection, refdir);
+        //ChargeDash();
+        //SetDirection(dir.x);
+        ////curDirection = new Vector3(dir.x, -1, 0f).normalized;
     }    
     public void ReflectFloor(Vector3 refdir)
     {
-        isCrashing = true;
-        anim.SetBool("isJump", true);   //¾Ö´Ï
+        //isCrashing = true;
+        //anim.SetBool("isJump", true);   //¾Ö´Ï
         
-        rigid.velocity = Vector2.zero;
-        //Vector3 dir = Vector3.Reflect(curDirection, refdir);
-        //curDirection = new Vector3(dir.x, dir.y, 0f).normalized;
-        Debug.Log(refdir);
-        //if (refdir.y > 0 || refdir.x != 0)//refdir.x == 1 || refdir.x == -1)
+        //rigid.velocity = Vector2.zero;
+        ////Vector3 dir = Vector3.Reflect(curDirection, refdir);
+        ////curDirection = new Vector3(dir.x, dir.y, 0f).normalized;
+        //Debug.Log(refdir);
+        ////if (refdir.y > 0 || refdir.x != 0)//refdir.x == 1 || refdir.x == -1)
+        ////{
+        ////    //curDirection = new Vector3(dir.x, -1, 0f).normalized;
+        ////    SetDirection(dir.x);
+        ////}
+        //float x;
+        //float y;
+        //if (refdir.y < -0.5f)    //À§·Î Æ¨°ÜÁ®
         //{
-        //    //curDirection = new Vector3(dir.x, -1, 0f).normalized;
-        //    SetDirection(dir.x);
+        //    x = curDirection.x < 0 ? -1 : 1;
+        //    y = 1;
         //}
+        //else if(refdir.y > 0.5f)//¾Æ·¡·Î Æ¨°Ü
+        //{
+        //    x = curDirection.x;
+        //    y = -1;
+        //}
+        //else  //¿·¸é
+        //{
+        //    x = -curDirection.x;
+        //    y = -1;
+        //}
+        //curDirection = new Vector2(x, y).normalized;
 
-        if(refdir.y < -0.5f)    //À§·Î Æ¨°ÜÁ®
-        {
-            float x = curDirection.x;
-            float y = 1;
-
-            curDirection = new Vector2(x, y);
-        }
-        else if(refdir.y > 0.5f)//¾Æ·¡·Î Æ¨°Ü¿Ã¶ó°¡
-        {
-            float x = curDirection.x;
-            float y = -1;
-
-            curDirection = new Vector2(x, y);
-        }
-        else  //¿·¸é
-        {
-            float x = -curDirection.x;
-            float y = -1;
-
-            curDirection = new Vector2(x, y);
-        }
         
 
-        ChargeDash();
-        rigid.gravityScale = 1f;
-        rigid.drag = 1.5f;
-        rigid.AddForce(curDirection * jumpForce, ForceMode2D.Impulse);
+        //ChargeDash();
+        //rigid.gravityScale = 1f;
+        //rigid.drag = 1.5f;
+        //rigid.AddForce(curDirection * jumpForce, ForceMode2D.Impulse);
     }
 
     
@@ -265,7 +269,7 @@ public class PlayerMove : MonoBehaviour
         if(hp <= 0)
         {
             Debug.Log("die");
-            //GameManager.instance.GameOver();
+            GameManager.instance.GameOver();
         }
     }
 
@@ -305,5 +309,31 @@ public class PlayerMove : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, bombSize);
+    }
+
+    public void Reflect(float xdir, float ydir)
+    {
+        moveSpeed = maxSpeed;
+        rigid.velocity = Vector2.zero;
+
+        float x = xdir != 0 ? xdir : curDirection.x < 0 ? -1 : 1;
+        float y = ydir;
+
+        curDirection = new Vector2(x, y).normalized;
+
+        if(y > 0)
+        {
+            isCrashing = true;
+            rigid.gravityScale = 1f;
+            rigid.drag = 1.5f;
+            rigid.AddForce(curDirection * jumpForce, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rigid.gravityScale = 0f;
+            rigid.drag = 0f;
+            rigid.velocity = curDirection * moveSpeed;
+        }
+        ChargeDash();
     }
 }
