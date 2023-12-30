@@ -12,12 +12,22 @@ public class ObstacleBase : ObjBase
     [SerializeField]
     protected float time;
 
+    protected Vector3 initScale;
+
     private bool isDestory = false;
 
     private void Awake()
     {
         endSize = new Vector2(0.1f, 0.1f);
         time = 1.5f;
+
+        initScale = transform.localScale;
+    }
+
+    private void OnEnable()
+    {
+        transform.localScale = initScale;
+        GetComponent<Collider2D>().enabled = true;
     }
 
     private void Update()
