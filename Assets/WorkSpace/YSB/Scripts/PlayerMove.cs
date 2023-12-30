@@ -229,17 +229,14 @@ public class PlayerMove : MonoBehaviour
     {
         hp = hp - dmg < 0 ? 0 : hp - dmg;
         UIManager.instance.SetHp(hp);
+        PauseManager.instance.TakeDamageTime();
         if(hp <= 0)
         {
             Debug.Log("die");
-            GameManager.instance.GameOver();
+            //GameManager.instance.GameOver();
         }
     }
-    IEnumerator SlowEnd()
-    {
-        yield return new WaitForSeconds(1f);
-        Time.timeScale = 1;
-    }
+
 
     public void TakeHp(int heal)
     {
