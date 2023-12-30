@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    private GameObject panel_Pause;
     private TMP_Text scoreText;
     private TMP_Text meterText;
     public Image[] hpImg;
@@ -21,12 +22,31 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
         }
+        panel_Pause = transform.Find("Pause").gameObject;
         scoreText = transform.Find("Text_Score").GetComponent<TMP_Text>();      
         meterText = transform.Find("Text_Meter").GetComponent<TMP_Text>();        
     }
     private void Update()
     {
         //SetScore();
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            GamePause();
+        }
+    }
+    public void GamePause()
+    {
+        bool isOpen = panel_Pause.activeSelf;
+        panel_Pause.SetActive(!isOpen);
+        if (isOpen == true)
+        {
+            PauseManager.instance.StopTime();
+        }
+        else
+        {
+            PauseManager.instance.MoveTime();
+        }
     }
     public void SetScore(float score)
     {

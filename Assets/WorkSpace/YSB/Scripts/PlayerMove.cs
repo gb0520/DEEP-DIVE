@@ -157,7 +157,7 @@ public class PlayerMove : MonoBehaviour
     }
     public void fall()
     {
-        preDirection = curDirection;
+        if (curDirection != Vector3.down) { preDirection = curDirection; }
         curDirection = Vector2.down;
         rigid.velocity = curDirection * moveSpeed;
         Invoke("ReturnDir", 2f);
@@ -234,6 +234,11 @@ public class PlayerMove : MonoBehaviour
             Debug.Log("die");
             GameManager.instance.GameOver();
         }
+    }
+    IEnumerator SlowEnd()
+    {
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 1;
     }
 
     public void TakeHp(int heal)
