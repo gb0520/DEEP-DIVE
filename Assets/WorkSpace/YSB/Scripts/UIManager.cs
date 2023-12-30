@@ -4,29 +4,87 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System.Linq.Expressions;
+using DG.Tweening.Core.Easing;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    private GameObject panel_Pause;
     private TMP_Text scoreText;
     private TMP_Text meterText;
+    [SerializeField] GameObject titleView;
+    [SerializeField] Transform creditView;
+    [SerializeField] Vector2 creditOpenedPos;
+    [SerializeField] Vector2 creditClosedPos;
+    [SerializeField] GameObject creditCloseBtn;
+    [SerializeField] float creditDuration;
+    [SerializeField] float titleFadeTime;
+    [SerializeField] TMP_Text titleTxt;
+    bool isActing;
+
+    private bool isOpen;
     public Image[] hpImg;
 
     private float fadeTime = 3f;
 
     private void Awake()
     {
+        Init();
         if(instance==null)
         {
             instance = this;
         }
+        panel_Pause = transform.Find("Pause").gameObject;
         scoreText = transform.Find("Text_Score").GetComponent<TMP_Text>();      
-        meterText = transform.Find("Text_Meter").GetComponent<TMP_Text>();        
+        meterText = transform.Find("Text_Meter").GetComponent<TMP_Text>();      
+        SetTitleFade(0.3f);
+
+        // titleView.SetActive(true);
     }
     private void Update()
     {
         //SetScore();
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            GamePause();
+        }
+    }
+
+
+    void Init()
+    {
+        if(!titleView)
+            titleView = GameObject.Find("Title View");
+
+        if(!titleTxt)
+            titleTxt = GameObject.Find("How to start").GetComponent<TMP_Text>();
+
+        if(!creditCloseBtn)
+            creditCloseBtn = GameObject.Find("CreditOff");
+
+        if(!creditView)
+            creditView = GameObject.Find("Credit Image").GetComponent<Transform>();
+    }
+
+    public void GamePause()
+    {
+        bool isOpen = !panel_Pause.activeSelf;
+        panel_Pause.SetActive(isOpen);
+        if (isOpen == true)
+        {
+            PauseManager.instance.IsPaused = true;
+            PauseManager.instance.StopTime();
+
+        }
+        else
+        {
+            PauseManager.instance.IsPaused = false;
+            PauseManager.instance.MoveTime();
+
+        }
     }
     public void SetScore(float score)
     {
@@ -42,7 +100,7 @@ public class UIManager : MonoBehaviour
         }
         meterText.gameObject.SetActive(true);
         int m = (int)(meter / 100) * 100;
-        meterText.text = m.ToString("F0") + "M\n����";
+        meterText.text = m.ToString("F0") + "M\n����";
 
         DOTmp(meterText, 2f);
 
@@ -67,5 +125,41 @@ public class UIManager : MonoBehaviour
         {
             hpImg[i].enabled = true;
         }
+    }
+
+
+    void SetTitleFade(float value)
+    {
+        titleTxt.DOFade(value ,titleFadeTime).OnComplete(()=> SetTitleFade(1 - value));
+    }
+
+    
+
+    public void CreditView()
+    {
+        if(isActing) return;
+
+        isActing = true;
+        
+        // 열려 있으면 닫힘
+        if(isOpen)
+        {
+            creditView.DOLocalMove(creditClosedPos, creditDuration).SetEase(Ease.InOutBack).OnComplete(() => isActing = false);
+        }
+        // 닫혀 있으면 열림
+        else
+        {
+            creditView.DOLocalMove(creditOpenedPos, creditDuration).SetEase(Ease.OutBack).OnComplete(() => isActing = false);
+        }
+        isOpen = !isOpen;
+        creditCloseBtn.SetActive(isOpen);
+    }
+
+    public void StartBtn()
+    {
+        // 시작한다는 함수 추가?
+        Debug.Log("Pressed Start Btn");
+        titleView.SetActive(false);
+        GameManager.instance.gameStart = true;
     }
 }

@@ -56,6 +56,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+        if(GameManager.instance.gameStart == false) { return; }
         if (Input.GetKeyDown(leftKey))
         {
             StartDash(left);
@@ -157,7 +158,7 @@ public class PlayerMove : MonoBehaviour
     }
     public void fall()
     {
-        preDirection = curDirection;
+        if (curDirection != Vector3.down) { preDirection = curDirection; }
         curDirection = Vector2.down;
         rigid.velocity = curDirection * moveSpeed;
         Invoke("ReturnDir", 2f);
@@ -229,12 +230,14 @@ public class PlayerMove : MonoBehaviour
     {
         hp = hp - dmg < 0 ? 0 : hp - dmg;
         UIManager.instance.SetHp(hp);
+        PauseManager.instance.TakeDamageTime();
         if(hp <= 0)
         {
             Debug.Log("die");
-            GameManager.instance.GameOver();
+            //GameManager.instance.GameOver();
         }
     }
+
 
     public void TakeHp(int heal)
     {

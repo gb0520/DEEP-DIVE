@@ -42,8 +42,8 @@ public class ObstacleBase : ObjBase
         {
             target = col.gameObject.GetComponent<PlayerMove>();
             Vector3 refdir = col.contacts[0].normal;
-            CrashObj();
             target.ReflectFloor(refdir);
+            CrashObj();
         }
     }
 }
