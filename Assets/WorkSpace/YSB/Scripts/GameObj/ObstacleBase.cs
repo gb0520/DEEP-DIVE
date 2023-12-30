@@ -11,13 +11,17 @@ public class ObstacleBase : ObjBase
     protected Vector2 endSize;
     [SerializeField]
     protected float time;
-
+    [SerializeField]
     protected Vector3 initScale;
 
     private bool isDestory = false;
 
-    private void Awake()
+    protected void Awake()
     {
+        if (gameObject.name == "ice")
+        {
+            Debug.Log("!");
+        }
         endSize = new Vector2(0.1f, 0.1f);
         time = 1.5f;
 

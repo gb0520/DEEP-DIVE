@@ -8,21 +8,27 @@ public class Ice : ObstacleBase
     [SerializeField]
     float moveSpeed;
 
+    [SerializeField]
     float limitY = 0;
+
+    bool falling;
 
     public void OnTriggerTouch()
     {
+        falling = true;
         rigid.velocity = Vector2.down * moveSpeed;
+        limitY = transform.position.y - 20;
     }
 
     private void Awake()
     {
+        base.Awake();
         rigid = GetComponent<Rigidbody2D>();
-        limitY = transform.position.y - 20;
     }
     private void Update()
     {
-        if (transform.position.y < limitY)
+        if (falling &&
+            transform.position.y < limitY)
         {
             gameObject.SetActive(false);
         }
