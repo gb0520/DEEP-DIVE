@@ -18,6 +18,9 @@ public class ObstacleManager : MonoBehaviour
     public Vector3 targetPos;
     public float lowestY;
 
+    bool isStage2;
+    bool cantSpawn;
+
     List<GameObject>[] spawnedObstacles;
 
 
@@ -50,9 +53,24 @@ public class ObstacleManager : MonoBehaviour
         
     }
 
+
+    void WaitSpawn()
+    {
+        cantSpawn = false;
+    }
+
     void SpawnObstacle()
     {
-        if (GameManager.instance.isOverY && GameManager.instance.stage < 2) return;
+        if (GameManager.instance.isOverY && GameManager.instance.stage < 2) return; //&& GameManager.instance.isClearStage) return; //&& GameManager.instance.isClearStage) ) return;
+ 
+        if(GameManager.instance.stage == 2 && !isStage2)
+        {
+            isStage2 = true;
+            Invoke("WaitSpawn", 4f);
+            cantSpawn = true;
+        }
+
+        if(cantSpawn) return;
 
         // 장애물 소환하고, 그 다음 소환 위치 지정하기
         // int spawnRandom = Random.Range(0, obstaclePrefabs.Length);
@@ -81,7 +99,7 @@ public class ObstacleManager : MonoBehaviour
             {
                 if(item.activeSelf)
                 {
-                    float screenY = Camera.main.orthographicSize * 2;
+                    float screenY = Camera.main.orthographicSize * 4;
                     if (item.GetComponent<Transform>().position.y > cameraTrans.position.y + screenY)
                         item.SetActive(false);
                 }

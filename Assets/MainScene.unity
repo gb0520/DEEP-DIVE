@@ -3154,7 +3154,7 @@ MonoBehaviour:
   fadeOutFix: 0
   startY: 0
   endY: 0
-  length: 300
+  length: 100
   isOverY: 0
   isClearStage: 0
   stage: 0
@@ -5212,7 +5212,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1057175835}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: GameRestart
+        m_MethodName: GoMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
