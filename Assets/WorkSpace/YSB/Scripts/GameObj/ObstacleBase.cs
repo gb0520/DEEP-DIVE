@@ -18,10 +18,6 @@ public class ObstacleBase : ObjBase
 
     protected void Awake()
     {
-        if (gameObject.name == "ice")
-        {
-            Debug.Log("!");
-        }
         endSize = new Vector2(0.1f, 0.1f);
         time = 1.5f;
 
