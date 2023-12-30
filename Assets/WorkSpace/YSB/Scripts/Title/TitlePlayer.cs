@@ -52,6 +52,7 @@ public class TitlePlayer : MonoBehaviour
         {
             //페이드 아웃
             manager_Title.MobDown();
+            gameObject.SetActive(false);
         }
     }
 

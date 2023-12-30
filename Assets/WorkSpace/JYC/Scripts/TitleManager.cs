@@ -38,6 +38,8 @@ public class TitleManager : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 2f;
 
+    private Tuto tuto;
+
     [SerializeField]
     private float waitTime = 60f;
     private float timer = 0;
@@ -66,6 +68,7 @@ public class TitleManager : MonoBehaviour
         SetTitleFade(0.3f);
 
         target = FindObjectOfType<TitlePlayer>();
+        tuto = transform.Find("Tuto").GetComponent<Tuto>();
     }
 
     private void Update()
@@ -131,7 +134,19 @@ public class TitleManager : MonoBehaviour
     }
     public void MobDown()
     {
-        monster.DOLocalMoveY(-15f, maxSpeed).OnComplete(MoveScene);
+        if(SaveManager.instance.isFirstTime == true)
+        {
+            monster.DOLocalMoveY(-15f, maxSpeed).OnComplete(OpenTuto);
+            SaveManager.instance.isFirstTime = false;
+        }
+        else
+        {
+            MoveScene();
+        }
+    }
+    void OpenTuto()
+    {
+        tuto.OpenTuto();
     }
     void MoveScene()
     {
