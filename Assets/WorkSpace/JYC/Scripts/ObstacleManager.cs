@@ -24,8 +24,8 @@ public class ObstacleManager : MonoBehaviour
 
     void Awake()
     {
+        LoadObstaclePrefabs();
 
-        
         spawnedObstacles = new List<GameObject>[obstacleTypes.Length];
         for (int i = 0; i < spawnedObstacles.Length; i++)
         {
