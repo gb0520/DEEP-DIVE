@@ -34,10 +34,10 @@ public class Ice : ObstacleBase
     protected override void CrashObj()
     {
         if (target == null) { return; }
-        GameManager.instance.MinusTime(damage);
+        //GameManager.instance.MinusTime(damage);
         target.fall();
         gameObject.SetActive(false);
-        //target.TakeDamage(damage);
+        target.TakeDamage(damage);
         //target.SetJumpForce();
     }
 }
