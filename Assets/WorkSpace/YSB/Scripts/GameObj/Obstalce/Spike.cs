@@ -11,7 +11,8 @@ public class Spike : ObstacleBase
     protected override void CrashObj()
     {
         if(target == null) { return; }
-        target.TakeDamage(damage);
+        GameManager.instance.TakeTime(-damage);
+        //target.TakeDamage(damage);
         target.SetJumpForce();
     }
 }
