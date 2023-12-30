@@ -18,7 +18,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] Transform creditView;
     [SerializeField] Vector2 creditOpenedPos;
     [SerializeField] Vector2 creditClosedPos;
+    [SerializeField] GameObject creditCloseBtn;
     [SerializeField] float creditDuration;
+    [SerializeField] float titleFadeTime;
+    [SerializeField] TMP_Text titleTxt;
+    bool isActing;
+
     private bool isOpen;
     public Image[] hpImg;
 
@@ -33,6 +38,7 @@ public class UIManager : MonoBehaviour
         panel_Pause = transform.Find("Pause").gameObject;
         scoreText = transform.Find("Text_Score").GetComponent<TMP_Text>();      
         meterText = transform.Find("Text_Meter").GetComponent<TMP_Text>();      
+        SetTitleFade(0.3f);
 
         // titleView.SetActive(true);
     }
@@ -100,18 +106,37 @@ public class UIManager : MonoBehaviour
     }
 
 
+    void SetTitleFade(float value)
+    {
+        titleTxt.DOFade(value ,titleFadeTime).OnComplete(()=> SetTitleFade(1 - value));
+    }
+
+    
+
     public void CreditView()
     {
+        if(isActing) return;
+
+        isActing = true;
+        
         // 열려 있으면 닫힘
         if(isOpen)
         {
-            creditView.DOLocalMove(creditClosedPos, creditDuration).SetEase(Ease.InOutBack);
+            creditView.DOLocalMove(creditClosedPos, creditDuration).SetEase(Ease.InOutBack).OnComplete(() => isActing = false);
         }
         // 닫혀 있으면 열림
         else
         {
-            creditView.DOLocalMove(creditOpenedPos, creditDuration).SetEase(Ease.OutBack);
+            creditView.DOLocalMove(creditOpenedPos, creditDuration).SetEase(Ease.OutBack).OnComplete(() => isActing = false);
         }
         isOpen = !isOpen;
+        creditCloseBtn.SetActive(isOpen);
+    }
+
+    public void StartBtn()
+    {
+        // 시작한다는 함수 추가?
+        Debug.Log("Pressed Start Btn");
+        titleView.SetActive(false);
     }
 }
