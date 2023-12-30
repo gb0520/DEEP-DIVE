@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
         }
         meterText.gameObject.SetActive(true);
         int m = (int)(meter / 100) * 100;
-        meterText.text = m.ToString("F0") + "M\n����";
+        meterText.text = m.ToString("F0") + "M\n돌파";
 
         DOTmp(meterText, 2f);
 

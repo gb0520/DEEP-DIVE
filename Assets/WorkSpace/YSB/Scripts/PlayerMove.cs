@@ -56,7 +56,6 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
-        if(GameManager.instance.gameStart == false) { return; }
         if (Input.GetKeyDown(leftKey))
         {
             StartDash(left);
@@ -104,10 +103,14 @@ public class PlayerMove : MonoBehaviour
         rigid.velocity = curDirection * moveSpeed;
     }
 
+    void ChargeDash()
+    {
+        dashCount = 1;
+    }
 
     private void StartDash(Vector3 dir)
     {
-        if (dashCount <= 0 || isCrashing == true) { return; }
+        if (dashCount <= 0 || isCrashing == true || isLoading == true) { return; }
         isDashing = true;
         dashCount -= 1;
         curDirection = dir;
@@ -138,7 +141,7 @@ public class PlayerMove : MonoBehaviour
         {
             curDirection = left;
         }
-        else
+        else if(x > 0)
         {
             curDirection = right;
         }
@@ -149,7 +152,7 @@ public class PlayerMove : MonoBehaviour
         if(isLoading == true)
         {
             if(curDirection != Vector3.down) { preDirection = curDirection; }
-
+            isDashing = false;
             curDirection = Vector2.down;
             rigid.velocity = curDirection * moveSpeed;
             return;
@@ -195,11 +198,12 @@ public class PlayerMove : MonoBehaviour
     }
     public void Reflect(Vector3 refdir)
     {
+        isDashing = false;
         isCrashing = false;
         rigid.gravityScale = 0f;
         rigid.drag = 0f;
         Vector3 dir = Vector3.Reflect(curDirection, refdir);
-
+        ChargeDash();
         SetDirection(dir.x);
         //curDirection = new Vector3(dir.x, -1, 0f).normalized;
     }    
@@ -218,7 +222,7 @@ public class PlayerMove : MonoBehaviour
             SetDirection(dir.x);
         }
 
-        dashCount = 1;  //대쉬 횟수 충전
+        ChargeDash();
         rigid.gravityScale = 1f;
         rigid.drag = 1.5f;
         rigid.AddForce(curDirection * jumpForce, ForceMode2D.Impulse);
@@ -229,6 +233,8 @@ public class PlayerMove : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         hp = hp - dmg < 0 ? 0 : hp - dmg;
+        anim.SetTrigger("isHit");
+        EffectManager.instance.DrawEffect();
         UIManager.instance.SetHp(hp);
         PauseManager.instance.TakeDamageTime();
         if(hp <= 0)
