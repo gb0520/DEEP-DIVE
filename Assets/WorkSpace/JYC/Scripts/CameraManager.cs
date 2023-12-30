@@ -8,10 +8,12 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] PlayerMove player;
     [SerializeField] Transform monster;
+    [SerializeField] Transform monsterParent;
+
     [SerializeField] float monsterInsideTime;
 
     bool isComing;
-    // bool isOutsiding = player;
+    bool isOutComing;
 
     void Awake()
     {
@@ -21,11 +23,25 @@ public class CameraManager : MonoBehaviour
     
     void Update()
     {
+        
         Move();
+        
     }
 
     public void Move()
     {
+        if(player.IsDashing && !isOutComing)
+        {
+            isOutComing = true;
+            monsterParent.DOKill();
+            monsterParent.DOLocalMoveY(1f, 0.5f).OnComplete(() => isOutComing = false);
+        }
+        else if(!player.IsDashing && !isOutComing)
+        {
+            monsterParent.DOKill();
+            monsterParent.DOLocalMoveY(0, 2f);
+        }
+
 
 
         if(transform.position.y < player.YPos) 
@@ -34,6 +50,7 @@ public class CameraManager : MonoBehaviour
             {
                 isComing = true;
                 monster.DOKill();
+                // isOutComing = false;
                 monster.DOLocalMoveY(-4, monsterInsideTime * 4);
                 // monster.DOLocalMoveY(4, 0.2f).OnComplete(()=>monster.DOLocalMoveY(-4, monsterInsideTime * 4));
                 
@@ -45,7 +62,9 @@ public class CameraManager : MonoBehaviour
         if(isComing)
         {
             isComing = false;
+            // if(!isOutComing)
             monster.DOKill();
+            // isOutComing = false;
             monster.DOLocalMoveY(4, monsterInsideTime * 2);
         }
 
