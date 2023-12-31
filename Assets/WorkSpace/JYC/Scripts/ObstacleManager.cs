@@ -66,7 +66,7 @@ public class ObstacleManager : MonoBehaviour
         if(GameManager.instance.stage == 2 && !isStage2)
         {
             isStage2 = true;
-            Invoke("WaitSpawn", 4f);
+            Invoke("WaitSpawn", 2.5f);
             cantSpawn = true;
         }
 

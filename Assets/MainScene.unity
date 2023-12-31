@@ -3154,7 +3154,7 @@ MonoBehaviour:
   fadeOutFix: 0
   startY: 0
   endY: 0
-  length: 100
+  length: 300
   isOverY: 0
   isClearStage: 0
   stage: 0
