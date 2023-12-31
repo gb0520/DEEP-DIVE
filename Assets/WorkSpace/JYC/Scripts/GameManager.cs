@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1f;
         isGameOver = false;
         if(!instance)
             instance = this;
@@ -151,11 +152,13 @@ public class GameManager : MonoBehaviour
 
     public void GameRestart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainScene");
     }
 
     public void GoMain()
     {
+        Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
     }
 

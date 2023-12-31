@@ -64,6 +64,7 @@ public class TitleManager : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1f;
         Init();
         SetTitleFade(0.3f);
 
