@@ -944,8 +944,8 @@ RectTransform:
   - {fileID: 2126075776}
   - {fileID: 1260343032}
   - {fileID: 240071602}
-  - {fileID: 1921221712}
   - {fileID: 887683131}
+  - {fileID: 1921221712}
   m_Father: {fileID: 1767037163}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2232,8 +2232,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC88C\uC6B0 \uBC84\uD2BC\uC744 \uD1B5\uD574 \uC88C\uC6B0 \uB300\uC2DC\uB97C
-    \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  m_text: "A\uC640D \uD0A4, \uB9C8\uC6B0\uC2A4 \uD074\uB9AD\uC744 \uD1B5\uD574 \uC88C\uC6B0
+    \uB300\uC2DC\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01b9e3daa7266c34e910c7ea31352d0a, type: 2}
   m_sharedMaterial: {fileID: -9193250239623874993, guid: 01b9e3daa7266c34e910c7ea31352d0a, type: 2}
@@ -2342,12 +2342,12 @@ RectTransform:
   m_Children:
   - {fileID: 1503091140}
   m_Father: {fileID: 460089202}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 263, y: -636}
-  m_SizeDelta: {x: 204, y: 79.6981}
+  m_AnchoredPosition: {x: 325, y: -856}
+  m_SizeDelta: {x: 300, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &887683132
 MonoBehaviour:
@@ -3117,7 +3117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1362792948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3529,8 +3529,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4136,8 +4136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditView: {fileID: 1921221712}
-  creditOpenedPos: {x: 0, y: -300}
-  creditClosedPos: {x: 0, y: -1200}
+  creditOpenedPos: {x: 0, y: -100}
+  creditClosedPos: {x: 0, y: -1450}
   creditCloseBtn: {fileID: 240071601}
   creditDuration: 2
   titleView: {fileID: 460089201}
@@ -4404,11 +4404,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 460089202}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1200}
+  m_AnchoredPosition: {x: 0, y: -1450}
   m_SizeDelta: {x: 620.0665, y: 877}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1921221714
